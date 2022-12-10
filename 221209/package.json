@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/BungeoppangIsGood/Bungeoppang/issues"
   },
-  "homepage": "https://github.com/BungeoppangIsGood/Bungeoppang#readme",
+  "homepage": "https://github.com/B`~ungeoppangIsGood/Bungeoppang#readme",
   "dependencies": {
     "ejs": "^3.1.8",
     "express": "^4.18.2",
@@ -23,3 +23,4 @@
     "mysql2": "^2.3.3"
   }
 }
+~~
