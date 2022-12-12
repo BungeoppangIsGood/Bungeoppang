@@ -12,6 +12,10 @@ app.get("/", function (req, res) {
     res.render("shopdetail");
 });
 
+app.get("/register", function (req, res) {
+    res.render("shopregister");
+});
+
 app.listen(port, ()=> {
     console.log("server open: ", port);
 })
