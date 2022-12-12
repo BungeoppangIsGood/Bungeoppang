@@ -1,26 +1,17 @@
 {
-  "name": "bungeoppang",
+  "name": "221209",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BungeoppangIsGood/Bungeoppang.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/BungeoppangIsGood/Bungeoppang/issues"
-  },
-  "homepage": "https://github.com/B`~ungeoppangIsGood/Bungeoppang#readme",
   "dependencies": {
+    "animate.css": "^4.1.1",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
-    "mysql": "^2.18.1",
-    "mysql2": "^2.3.3"
+    "mysql": "^2.18.1"
   }
 }
-~~
