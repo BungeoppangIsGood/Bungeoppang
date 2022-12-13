@@ -16,11 +16,11 @@ class Store extends Sequelize.Model {
                unique: true,
             },
             startTime: {
-               type: Sequelize.DATE,
+               type: Sequelize.TIME(6),
                allowNull: false,
             },
             deleteTime: {
-               type: Sequelize.DATE,
+               type: Sequelize.TIME(6), //TIME(6)수정 //스토어 아이디 폴인키도 store_name으로 바꿔야한다.
                allowNull: false,
             },
             latitude: {//위도
