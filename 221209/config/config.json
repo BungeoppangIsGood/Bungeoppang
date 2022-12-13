@@ -1,0 +1,16 @@
+{
+  "development": {
+    "username": "user",
+    "password": "shkshk12!",
+    "database": "fish",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "user",
+    "password": "shkshk12!",
+    "database": "fish",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}
