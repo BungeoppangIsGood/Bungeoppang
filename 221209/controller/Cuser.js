@@ -1,5 +1,5 @@
 const {User} = require("../models");
-const {Store} = require("../models/store");
+const {Review} = require("../models");
 const bcrypt = require('bcrypt')
 
 //닉네임 수정
@@ -25,4 +25,7 @@ exports.password_update = async (req, res) => {
   });
   res.send(result);
 }
+
+
+
 

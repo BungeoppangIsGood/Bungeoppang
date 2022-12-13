@@ -1,9 +1,8 @@
 const express = require("express");
-//const controller = require("../controller/Cstore");
 const router = express.Router();
 
-router.get('/login', (req, res) => {
-  res.render('login')
+router.get('/signin', (req, res) => {
+  res.render('signin')
 })
 router.get('/signup', (req, res) => {
   res.render('signup')

@@ -2,8 +2,9 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const passport = require('passport');
-const session = require('express-session')
+const session = require('express-session');
 const dotenv = require('dotenv');
+
 
 dotenv.config(); //정의한 환경변수를 셋팅 쓸 수 있게된다. 프로젝트 안에 어떠한 곳에서도 접근가능해진다.
 
@@ -16,12 +17,12 @@ const app = express();
 
  
 
-app.set('public', path.join(__dirname, 'public'));
+app.use("/static", express.static(__dirname+"/static"));
 app.set("view engine", "ejs");
 
 
  
-sequelize.sync({ force: false }) //db수정사항 반영 - 기존 데이터랑 안 맞는 경우가 있어서 에러나는 경우가 많다.
+sequelize.sync({ alter: true }) //db수정사항 반영 - 기존 데이터랑 안 맞는 경우가 있어서 에러나는 경우가 많다.
 //force: false == default 생성까지만? 
 //force: true 테이블 지워졌다 다시 생성- 데이터 다 날아감 
 //foriegn키가 걸려있으면 테이블이 안지워지는 경우가 있다 이때는 직접 워크벤치에서 삭제
@@ -56,11 +57,13 @@ app.use(passport.session());
 const pageRouter = require('./routes/page');
 const userRouter = require('./routes/user');
 const authRouter = require('./routes/auth');
+const storeRouter = require('./routes/store');
 //const cookieParser = require('cookie-parser');
 
 app.use('/', pageRouter);
 app.use('/user', userRouter);
 app.use('/auth', authRouter);
+app.use('/store', storeRouter);
 
 
 
