@@ -27,7 +27,7 @@
             }
             /* 가게 정보 */
             #info {
-                font-size: 1.7rem;
+                font-size: 1.8rem;
                 padding: 20px;
             }
             #infoDetail {
@@ -35,14 +35,43 @@
             }
             /* 가게 정보 로고 */
             .fish{
+                position: inherit;
                 width: 70px;
                 margin: -10px;
             }
+            /* contents 및 별점 남기기 */
+            .wrap{
+                width: 100%;
+                height: 100%;
+                position: relative;
+            }
+            .detail {
+                position: absolute;
+                display: block;
+            }
+            /* 평균 */
+            .stars {
+                position: absolute;
+                left: 75%;
+                width: 10rem;
+            }
+            /* 별점 남기기 */
+            .regiSTar {
+                position: absolute;
+                top: 55.2rem;
+                width: 62.5rem;
+                height: 15.5rem;
+                display: show;
+            }
+            .titleStar {
+                font-size: 1.8rem;
+            }
+            /* 누르는 별점 */
             .star-rating {
             border:solid 1px #ccc;
             display:flex;
             flex-direction: row-reverse;
-            font-size:1.5em;
+            font-size:3em;
             justify-content:space-around;
             padding:0 .2em;
             text-align:center;
@@ -62,34 +91,18 @@
             .star-rating label:hover ~ label {
             color:#fc0;
             }
-            /* contents 및 별점 남기기 */
-            .wrap{
-                width: 100%;
-                height: 100%;
-                position: relative;
-            }
-            .detail {
-                position: absolute;
-                display: block;
-            }
-            .regiSTar {
-                position: absolute;
-                top: 395px;
-                width: 414px;
-                height: 130px;
-                display: none;
-            }
             .starCard {
                 border-color: transparent;
                 position: absolute;
-                left: 30%;
-                top: 48%;
+                left: 38%;
+                top: 42%;
             }
             .starRegi {
                 position: absolute;
                 border-radius: 50px;
                 left: 65%;
                 top: 50%;
+                font-size: 1.8rem;
             }
             /* 버튼 */
             .button {
@@ -119,7 +132,7 @@
                 </div>
                     <ul class="list-group list-group-flush">
                     <li class="list-group-item" id="info"><img src="./img/IMG_0652.PNG" class="fish" alt="...">평점
-                        <ol style="float: right;" id = "average" > ⭐⭐⭐⭐⭐ <span>(5.0)</span></ol>
+                        <ol style="float: right;" id = "average" ><img src="./img/5.PNG" alt=""class="stars" id="stars"><span>(5.0)</span></ol>
                     </li>
                     <li class="list-group-item" id="info"><img src="./img/IMG_0652.PNG" class="fish" alt="...">메뉴<br>
                         <ol style="float: right;" id="infoDetail">팥 2개 1000원</ol> <br>
@@ -132,7 +145,7 @@
                     <div class="card-body button">
                         <button type="button" class="btn" id="recordStar">별점 남기기</button>
                         <img src="./img/IMG_0652.PNG" class="card-img-top animate__animated animate__bounceIn" id="home" onclick="home();"><!-- 홈화면 이동 -->
-                        <button href="views/shopregister" type="button" class="btn btn-warning" style="float: right; font-size: 1.8rem;">가게 수정하기</button>
+                        <button href="./shopEdit.ejs" type="button" class="btn btn-warning" style="float: right; font-size: 1.8rem;">가게 수정하기</button>
                     </div>
             </div>
         </div>
@@ -188,28 +201,29 @@
                     document.querySelector("#div2").style.display = "none";
                 })
                 .then((req) => {
+                    let stars = document.getElementById('stars').src
                     if(req.ratingAVG >= 5){
-                        document.getElementById("average").innerText= "★★★★★"
+                        stars.innerText= "./img/5.PNG"
                     } else if ( 5 > req.ratingAVG >=4.5 ){
-                        document.getElementById("average").innerText= "★★★★"
+                        document.getElementById("average").innerText= "./img/4.5.PNG"
                     } else if ( 4.5 > req.ratingAVG >=4 ){
-                        document.getElementById("average").innerText= "★★★★☆"
+                        document.getElementById("average").innerText= "./img/4.PNG"
                     } else if ( 4 > req.ratingAVG >=3.5 ){
-                        document.getElementById("average").innerText= "★★★★☆"
+                        document.getElementById("average").innerText= "./img/3.5.PNG"
                     } else if ( 3.5 > req.ratingAVG >=3 ){
-                        document.getElementById("average").innerText= "★★★☆☆"
+                        document.getElementById("average").innerText= "./img/3.PNG"
                     } else if ( 3 > req.ratingAVG >=2.5 ){
-                        document.getElementById("average").innerText= "★★★☆☆"
+                        document.getElementById("average").innerText= "./img/2.5.PNG"
                     } else if ( 2.5 > req.ratingAVG >=2 ){
-                        document.getElementById("average").innerText= "★★☆☆☆"
+                        document.getElementById("average").innerText= "./img/2.PNG"
                     } else if ( 2 > req.ratingAVG >1.5 ){
-                        document.getElementById("average").innerText= "★★☆☆☆"
+                        document.getElementById("average").innerText= "./img/1.5.PNG"
                     } else if ( 1.5 > req.ratingAVG >=1 ){
-                        document.getElementById("average").innerText= "★☆☆☆☆"
+                        document.getElementById("average").innerText= "./img/1.PNG"
                     } else if ( 1 > req.ratingAVG >=0.5 ){
-                        document.getElementById("average").innerText= "★☆☆☆☆"
+                        document.getElementById("average").innerText= "./img/0.5.PNG"
                     } else {
-                        document.getElementById("average").innerText= "☆☆☆☆☆"
+                        document.getElementById("average").innerText= "./img/0.PNG"
                     } 
                     
                 })

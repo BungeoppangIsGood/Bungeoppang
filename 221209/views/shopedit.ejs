@@ -33,51 +33,67 @@
             }
             .wrap{
                 width: 100%;
+                min-width: 414px;
                 height: 100%;
                 position: relative;
+                font-size: 1.8rem;
             }
             .detail {
-                width: 414px;
+                width: 100%;
                 position: absolute;
-                left: 20%;
                 display: block;
+                text-align: center;
+            }
+            .norang {
+                width: 8.5rem;
+                display: block;
+                background-color: #F5DA81;
             }
             .edit {
                 position: absolute;
-                left: 30%;
+                left: 60%;
+            }
+            #editHome {
+                width: 180px; 
+                position: absolute; 
+                left: 20%; 
+                top: 93%;
             }
         </style>
     </head>
     <body>
         <div class="wrap">
             <div class="scene flex detail jm-font">
-                <div class="card" style="width: 414px; border: none">
+                <div class="card" style="border: none;">
                     <div class="wrap">
-                        <div id="map" style="height: 18rem;"></div>
+                        <div id="map" style="height: 30rem;"></div>
                     </div> <br>
                     <form action="">
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="inputGroup-sizing-default" style="background-color: #F5DA81;">가게 이름</span>
-                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="수정할 가게 이름 입력">
+                            <span class="input-group-text norang" id="inputGroup-sizing-default">가게 이름</span>
+                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="등록할 가게 이름 입력">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="inputGroup-sizing-default" style="background-color: #F5DA81;">가게 주소</span>
-                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="수정할 가게 주소 클릭">
+                            <span class="input-group-text norang" id="inputGroup-sizing-default">가게 주소</span>
+                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="등록할 가게 주소 클릭">
                         </div>
+                        <p>메뉴 수정
+                        </p>
                         <div class="input-group">
-                            <span class="input-group-text" style="background-color: #F5DA81;">메뉴 수정</span>
-                            <select name="menu" id="">
-                                <option value="팥">팥</option>
-                                <option value="슈크림">슈크림</option>
-                            </select>
+                            <span class="input-group-text norang">팥</span>
                             <input type="text" aria-label="Last name" class="form-control"placeholder="가격" id="price1">
                         </div>
-                        <br>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="inputGroup-sizing-default" style="background-color: #F5DA81;">가게 운영 요일</span>
-                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="요일 입력(ex. 월, 수)">
+                        <div class="input-group">
+                            <span class="input-group-text norang">슈크림</span>
+                            <input type="text" aria-label="Last name" class="form-control"placeholder="가격" id="price2">
                         </div>
                         <br>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text norang" id="inputGroup-sizing-default">가게 운영 요일</span>
+                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="요일 입력(ex. 월, 화, 수)">
+                        </div>
+                        <br>
+                        <img src="./img/IMG_0652.PNG" class="card-img-top animate__animated animate__bounceIn" id="editHome" onclick="home();">
                         <button type="button" class="btn btn-warning edit">가게 수정하기</button>
                     </form>
                 </div>
