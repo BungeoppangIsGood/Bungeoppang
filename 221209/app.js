@@ -18,6 +18,7 @@ const app = express();
  
 
 app.use("/static", express.static(__dirname+"/static"));
+app.use("/uploads", express.static(__dirname+"/uploads"));
 app.set("view engine", "ejs");
 
 
@@ -70,7 +71,7 @@ app.use('/store', storeRouter);
 
 
  
-//일부러 에러 발생시키기 TEST용
+
 app.get('*', (req, res, next) => {
    const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
    error.status = 404;

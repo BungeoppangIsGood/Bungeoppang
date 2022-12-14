@@ -28,4 +28,13 @@ exports.password_update = async (req, res) => {
 
 
 
+//프로필 이미지 등록(수정)
+exports.profileImg_update = (req, res) => {
+  console.log(req.file)
+  console.log(req.body)
+  res.send(req.file.filename) 
+}
+
+
+
 

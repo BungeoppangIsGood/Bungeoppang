@@ -1,27 +1,23 @@
 <html>
     <head>
-        <title>회원가입</title>
+        <title>마이페이지</title>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
         <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300&amp;display=swap'>
-
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <link rel="stylesheet" href="/static/css/user.css">
-        
         <script>
             function profileEdit() {
                 var form = document.getElementById("form_profile");
                 if ( !form.checkValidity() ) {
                     form.reportValidity();
-
                     return false;
                 }
                 let user = {
                     id: form.id.value,
                     pw: form.pw.value,
-                    name: form.name.value
+                    name: form.name.value//닉네임, 파일이름 추가
                 };
                 axios({
                     method: 'patch',
@@ -36,7 +32,6 @@
                     }
                 });
             }
-
             function profileDelete() {
                 var form = document.getElementById("form_profile");
                 if ( !form.checkValidity() ) {
@@ -60,33 +55,51 @@
                     }
                 });
             }
+            function uploads(){
+                const formData = new FormData();
+                const file = document.getElementById('profileImg');
+                formData.append('profileImg', file.files[0]);
+                // console.dir(formData)
+                
+                axios({
+                    method: 'patch',
+                    url: 'user/profileImgUpdate',
+                    data: formData,
+                    headers: {
+                        'Content-Type' : 'multipart/form-data',
+                    },
+                }).then(function (response) {
+                    console.log(response);
+                    const img = document.querySelector('img');
+                    img.src = `uploads/${response.data}`
+                })
+            }
             console.log('<%=data.userId%>')
         </script>
     </head>
     <body>
-        <!-- 
-            프로필 이미지 수정을 하는디 multer로 하겠지 
-            디폴트 이미지 하나 띄우고
-            <img src="<%=data.img%>" alt="">
-            버튼 설정 하나 해주고 (프로필 이미지 변경)
-        -->
         <div class="scene flex">
-            <section class="card">
-            <h1 class="card__heading">
-                <span> Welcome</span>
-            </h1>
-            <form class="card__form" id="form_profile">
-                <label for="ID" class="visually">ID :</label>
+            <section class="card" style="display: flex; flex-direction: column; align-items: center;">
+                <div style="width: 150px; height: 150px; background: rgb(231, 227, 227); border-radius: 50%; overflow: hidden; display: flex; justify-content: center;">
+                    <img src="/static/img/fish.png"  alt="..." style="width: 100%;">
+                </div>
+                <input type="file" name="profileImg" id="profileImg">
+                <button onclick="uploads()">업로드</button>
+                <h1 class="card__heading">
+                    <span> 마이페이지 </span>
+                </h1>
+                <form class="card__form" id="form_profile">
+                <label for="ID" class="visually">아이디 :</label>
                 <div><input id="ID" class="card__input" type="text" name="id" value="<%=data.userId%>" readonly /></div>
-                <label for="password" class="visually">Password :</label>
+                <label for="password" class="visually">비밀번호 :</label>
                 <input id="password" class="card__input" type="password" name="pw" value="123123" required />
-                <label for="name" class="visually">Name :</label>
+                <label for="name" class="visually">이름 :</label>
                 <input id="name" class="card__input" type="text" name="name" value="<%=data.name%>" required />
                 <button class="card__button" type="button" onclick="profileEdit();">
-                <span>Edit</span>
+                <span>수정</span>
                 </button>
                 <button class="card__button" type="button" onclick="profileDelete();">
-                <span>Delete</span>
+                <span>삭제</span>
                 </button>
             </form>
             </section>
