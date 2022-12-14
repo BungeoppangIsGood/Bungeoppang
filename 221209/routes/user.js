@@ -5,11 +5,6 @@ const multer = require('multer');
 const path =require('path');
 const fs = require('fs');
 
-router.patch('/nickNameUpdate', controller.nickName_update)
-router.patch('/passwordUpdate', controller.password_update)
-
-
-
 
 const upload = multer({
 	storage: multer.diskStorage({
@@ -27,7 +22,7 @@ const upload = multer({
 
 
 router.patch('/profileImgUpdate', upload.single('profileImg'), controller.profileImg_update)
-
+router.patch('update', controller.mypage_update)
 
 module.exports = router;
 
