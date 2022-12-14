@@ -2,11 +2,17 @@ const {Store, review} = require("../models");
 const Sequelize = require('sequelize')
 
 exports.register_rating = async (req, res) => {
-  const result = await review.create({
-    userId: req.user,
-    store: req.body.store,
-    star: req.body.rating
-  })
+  try {
+    const result = await review.create({
+      userId: req.user,
+      store: req.body.store,
+      star: req.body.rating
+    })
+  } catch (err) {
+    console.error(err);
+    next(err)
+  }
+
 }
 
 exports.rating_AVG = async (req, res) => {

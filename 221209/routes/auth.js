@@ -10,7 +10,7 @@ router.post('/a', (req, res) => {
   res.send(true)
 })
 
-router.post('/join', async (req, res, next) => { // 회원가입
+router.post('/signup', async (req, res, next) => { // 회원가입
   const {id, name, nickName, pw} = req.body;
 
   try {
@@ -49,7 +49,7 @@ router.post('/login', (req, res, next) => {
         return next(loginError);
       }
       //console.log(user)
-      return res.redirect('/main');
+      return res.send(true);
     });
   })(req, res, next); //미들웨어 내에 미들웨어
 })
