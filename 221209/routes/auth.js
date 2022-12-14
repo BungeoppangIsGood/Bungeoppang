@@ -60,9 +60,9 @@ router.post('/login', (req, res, next) => {
 router.get('/kakao', passport.authenticate('kakao'));
 
 router.get('/kakao/callback', passport.authenticate('kakao', { //카카오 로그인 성공시에 카카오에서 요청을 해준다.
-  failureRedirect: '/login',
+  failureRedirect: '/signin',
 }), (req, res) => {
-  res.send('성공');
+  res.redirect('/');
 })
 
 

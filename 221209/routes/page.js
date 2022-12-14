@@ -12,6 +12,16 @@ router.get('/signup', (req, res) => {
 router.get('/main', (req, res) => {
   res.render('main')
 })
+router.get('/', (req, res) => {
+  res.render('map')
+})
+router.get('/storeRegister', (req, res) => {
+  res.render('shopRegister')
+})
+router.get('/storeDetail', (req, res) => {
+  console.log(req.query)
+  res.render('shopdetail')
+})
 router.get('/mypage', async (req, res) => {
   console.log('req.user',req.user)
   const result =  await User.findOne({

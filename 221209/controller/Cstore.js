@@ -7,6 +7,7 @@ exports.register_rating = async (req, res) => {
     store: req.body.store,
     star: req.body.rating
   })
+  res.send(result)
 }
 
 exports.rating_AVG = async (req, res) => {
