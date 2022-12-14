@@ -16,22 +16,20 @@
                     console.log( "reportValidity" );
                     return false;
                 }
-                
-
                 let user = {
                     id: form.id.value,
                     pw: form.pw.value
                 };
                 axios({
                     method: 'post',
-                    url: '/user/signin',
+                    url: '/auth/login',
                     data: user
                 })
                 .then((data) => {
                     if ( data.data === true ){
+                        // var form_info = document.getElementById("form_info");
+                        // form_info.id.value = form.id.value // 위 두개 코드는 지워도 될듯
                         alert("로그인 성공");
-                        var form_info = document.getElementById("form_info");
-                        form_info.id.value = form.id.value
                     } else {
                         alert("아이디가 틀렸습니다 확인해주세요");
                         form.reset();
@@ -43,7 +41,7 @@
     <body>
         <div class="scene flex">
             <section class="card">
-                <img src="/static/img/IMG_0652.PNG" class="card-img-top" alt="...">      
+                <img src="/static/img/IMG_0652.PNG" class="card-img-top" alt="...">
             <h1 class="card__heading">
                 <span>붕어빵</span>
             </h1>

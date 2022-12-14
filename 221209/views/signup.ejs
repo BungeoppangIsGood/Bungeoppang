@@ -26,7 +26,7 @@
 
                 axios({
                     method: 'post',
-                    url: '/user/signup',
+                    url: '/auth/signup',
                     data: user
                 })
                 .then((data) => {
@@ -38,7 +38,7 @@
                         document.querySelector("p").innerText="실패";
                     }
                     alert("회원가입 성공");
-                    document.location.href="/user/signin";
+                    document.location.href="/signin";
                 }).catch((err) => {
                     // document.querySelector("p").innerText="실패";
                     alert("이미 존재하는 아이디 입니다");

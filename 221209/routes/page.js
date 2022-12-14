@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const {User} = require('../models')
 
 router.get('/signin', (req, res) => {
+  console.log(req.user)
   res.render('signin')
 })
 router.get('/signup', (req, res) => {
@@ -10,9 +12,23 @@ router.get('/signup', (req, res) => {
 router.get('/main', (req, res) => {
   res.render('main')
 })
-router.get('/mypage', (req, res) => {
+router.get('/mypage', async (req, res) => {
   console.log('req.user',req.user)
-  res.render('mypage')
+  const result =  await User.findOne({
+    where : {
+      userId : req.user  
+    }
+  })
+  if(!result) {
+    const result = await User.fineOne({
+      where: {
+        snsId: req.user
+      }
+    })
+    return res.render('mypage', {data: result});
+  }
+  console.log(result)
+  res.render('mypage', {data: result})
 })
 
 
