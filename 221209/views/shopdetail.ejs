@@ -13,25 +13,25 @@
         />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <link rel="icon" href="./img/mapIcon.PNG">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <style>
-            @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
-            .jm-font{
-                font-family: 'Noto Sans KR', sans-serif;
-                /* font-family: 'Jeju Hallasan', cursive; */
-            }
+            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+             .jm-font{
+                 font-family: 'Noto Sans KR', sans-serif;
+             }
             /* 가게 이름 */
             #storeName {
                 text-align: center;
-                font-size: 3rem;
+                font-size: 5rem;
                 font-weight: 500;
             }
             /* 가게 정보 */
             #info {
-                font-size: 1.8rem;
+                font-size: 2.5rem;
                 padding: 20px;
             }
             #infoDetail {
-                font-size: 1.65rem;
+                font-size: 2rem;
             }
             /* 가게 정보 로고 */
             .fish{
@@ -52,16 +52,16 @@
             /* 평균 */
             .stars {
                 position: absolute;
-                left: 75%;
-                width: 10rem;
+                left: 65%;
+                width: 15rem;
             }
             /* 별점 남기기 */
             .regiSTar {
                 position: absolute;
-                top: 55.2rem;
-                width: 62.5rem;
+                top: 54.2rem;
+                width: 61rem;
                 height: 15.5rem;
-                display: show;
+                display: none;
             }
             .titleStar {
                 font-size: 1.8rem;
@@ -111,13 +111,13 @@
             }
             .button > button {
                 background-color : #FFBF00;
-                font-size: 1.8rem;
+                font-size: 2.8rem;
             }
             #home {
-                width: 180px; 
+                width: 250px; 
                 position: absolute; 
-                left: 40%; 
-                top: 91.5%;
+                left: 37%; 
+                top: 90%;
             }
         </style>
     </head>
@@ -127,25 +127,25 @@
                 <div class="card" style="width: 100%">
                     <img src="./img/IMG_0652.PNG" class="card-img-top animate__animated animate__tada"alt="..."><!-- 아이콘 부분 -->
                     <div class="card-body">
-                    <h5 class="card-title jm-font" id="storeName">행복한 잉어빵</h5>
+                    <h5 class="card-title jm-font" id="storeName">행복한 붕어빵</h5>
                     <p class="card-text"></p>
                 </div>
                     <ul class="list-group list-group-flush">
                     <li class="list-group-item" id="info"><img src="./img/IMG_0652.PNG" class="fish" alt="...">평점
-                        <ol style="float: right;" id = "average" ><img src="./img/5.PNG" alt=""class="stars" id="stars"><span>(5.0)</span></ol>
+                        <ol style="float: right;" id = "average" ><img src="./img/5.PNG" alt=""class="stars" id="stars"><span id="aa"></span></ol>
                     </li>
                     <li class="list-group-item" id="info"><img src="./img/IMG_0652.PNG" class="fish" alt="...">메뉴<br>
                         <ol style="float: right;" id="infoDetail">팥 2개 1000원</ol> <br>
                         <ol style="float: right;" id="infoDetail">슈크림 2개 1000원</ol>
                     </li>
-                    <li class="list-group-item" id="info"><img src="./img/IMG_0652.PNG" class="fish" alt="...">이용시간
+                    <li class="list-group-item" id="info"><img src="./img/IMG_0652.PNG" class="fish" alt="...">이용 요일
                         <ol style="float: right;" id="infoDetail">Open: 월,화,수,목,금</ol>
                     </li>
                     </ul>
                     <div class="card-body button">
                         <button type="button" class="btn" id="recordStar">별점 남기기</button>
                         <img src="./img/IMG_0652.PNG" class="card-img-top animate__animated animate__bounceIn" id="home" onclick="home();"><!-- 홈화면 이동 -->
-                        <button href="./shopEdit.ejs" type="button" class="btn btn-warning" style="float: right; font-size: 1.8rem;">가게 수정하기</button>
+                        <button href="./shopEdit.ejs" type="button" class="btn btn-warning" style="float: right; font-size: 2.8rem;">가게 수정하기</button>
                     </div>
             </div>
         </div>
@@ -186,11 +186,10 @@
             recordStar();
             /* 1. regiStar 버튼을 누르면  */
            function regiStar() {
-                let star = document.getElementById("star");
+                let star = document.querySelectorAll("#star");
                 let rating = {
                     rating: star.star.value
                 }
-                /* 여기는 일단 보류임 */
                 axios({
                     method: 'post',
                     url: '/store/star',
@@ -204,26 +203,37 @@
                     let stars = document.getElementById('stars').src
                     if(req.ratingAVG >= 5){
                         stars.innerText= "./img/5.PNG"
+                        document.getElementById("aa").innerText = req.ratingAVG
                     } else if ( 5 > req.ratingAVG >=4.5 ){
-                        document.getElementById("average").innerText= "./img/4.5.PNG"
+                        stars.innerText= "./img/4.5.PNG"
+                        document.getElementById("aa").innerText = req.ratingAVG
                     } else if ( 4.5 > req.ratingAVG >=4 ){
-                        document.getElementById("average").innerText= "./img/4.PNG"
+                        stars.innerText= "./img/4.PNG"
+                        document.getElementById("aa").innerText = req.ratingAVG
                     } else if ( 4 > req.ratingAVG >=3.5 ){
-                        document.getElementById("average").innerText= "./img/3.5.PNG"
+                        stars.innerText= "./img/3.5.PNG"
+                        document.getElementById("aa").innerText = req.ratingAVG
                     } else if ( 3.5 > req.ratingAVG >=3 ){
-                        document.getElementById("average").innerText= "./img/3.PNG"
+                        stars.innerText= "./img/3.PNG"
+                        document.getElementById("aa").innerText = req.ratingAVG
                     } else if ( 3 > req.ratingAVG >=2.5 ){
-                        document.getElementById("average").innerText= "./img/2.5.PNG"
+                        stars.innerText= "./img/2.5.PNG"
+                        document.getElementById("aa").innerText = req.ratingAVG
                     } else if ( 2.5 > req.ratingAVG >=2 ){
-                        document.getElementById("average").innerText= "./img/2.PNG"
+                        stars.innerText= "./img/2.PNG"
+                        document.getElementById("aa").innerText = req.ratingAVG
                     } else if ( 2 > req.ratingAVG >1.5 ){
-                        document.getElementById("average").innerText= "./img/1.5.PNG"
+                        stars.innerText= "./img/1.5.PNG"
+                        document.getElementById("aa").innerText = req.ratingAVG
                     } else if ( 1.5 > req.ratingAVG >=1 ){
-                        document.getElementById("average").innerText= "./img/1.PNG"
+                        stars.innerText= "./img/1.PNG"
+                        document.getElementById("aa").innerText = req.ratingAVG
                     } else if ( 1 > req.ratingAVG >=0.5 ){
-                        document.getElementById("average").innerText= "./img/0.5.PNG"
+                        stars.innerText= "./img/0.5.PNG"
+                        document.getElementById("aa").innerText = req.ratingAVG
                     } else {
-                        document.getElementById("average").innerText= "./img/0.PNG"
+                        stars.innerText= "./img/0.PNG"
+                        document.getElementById("aa").innerText = req.ratingAVG
                     } 
                     
                 })
