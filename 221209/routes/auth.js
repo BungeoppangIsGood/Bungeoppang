@@ -66,6 +66,16 @@ router.get('/kakao/callback', passport.authenticate('kakao', { //카카오 로�
 })
 
 
+router.get('/facebook',passport.authenticate('facebook')); //사용자가 인증하러 - 내 서비스를 허락하러
+
+router.get('/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/signin' }),
+  function(req, res) {
+  // Successful authentication, redirect home.
+  res.redirect('/');
+}); 
+
+
 
 
 
