@@ -6,7 +6,7 @@ class Store extends Sequelize.Model {
  
       return super.init(
          {  
-            name: {
+            storeName: {
                type: Sequelize.STRING(20),
                allowNull: false,
             },

@@ -46,6 +46,14 @@ exports.profileImg_update = (req, res) => {
   res.send(req.file.filename) 
 }
 
+exports.user_delete = async (req, res) => {
+  console.log(res.body);
+  const result = await User.delete({
+    where: req.body.id
+  })
+  res.send(result);
+}
+
 
 
 
