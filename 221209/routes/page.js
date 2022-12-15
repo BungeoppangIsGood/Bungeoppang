@@ -20,7 +20,13 @@ router.get('/storeRegister', (req, res) => {
 })
 router.get('/storeDetail', (req, res) => {
   console.log(req.query)
-  res.render('shopdetail')
+  const result = Store.findOne({
+    where: {
+      store: req.query.storeName,
+    }
+  })
+  console.log(result)
+  res.render('shopdetail',{data:result})
 })
 router.get('/mypage', async (req, res) => {
   console.log('req.user',req.user)

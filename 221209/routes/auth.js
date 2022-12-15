@@ -25,7 +25,7 @@ router.post('/signup', async (req, res, next) => { // 회원가입
       name,
       pw: hash
     });
-    return res.send('가입성공');
+    return res.send(true);
   } catch (error) {
     console.error(error);
     return next(error);
