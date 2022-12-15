@@ -10,8 +10,15 @@ exports.register_rating = async (req, res) => {
   res.send(result)
 }
 
-exports.rating_AVG = async (req, res) => {
-
+exports.register = async (req, res) => {
+  const {storeName, address, operatingTime, menu} = req.body;
+  console.log(menu.keys())
+  const result = await Store.create({
+    storeName,
+    address,
+    operatingTime
+  })
+  res.send('등록성공');
 }
 
 //가게 페이지 render시에 필요
