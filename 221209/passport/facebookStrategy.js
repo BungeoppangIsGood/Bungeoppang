@@ -19,7 +19,7 @@ module.exports = () => {//생성자 함수로 만든 객체 넣는다. 안에 �
         done(null, exUser);
       } else {
         const newUser = await User.create({
-          userId: profile._json.email,
+          userId: '페이스북'+profile._json.email,
           nickName: profile._json.email.split('@')[0],
           snsId: profile._json.email,
           provider: 'facebook',
