@@ -17,6 +17,7 @@ exports.nickName_update = (req, res) => {
 
 //마이페이지 프로필 수정
 exports.mypage_update = async (req, res) => {
+  console.log(req.body)
   if(req.body.pw){
     const hash = await bcrypt.hash(req.body.pw, 12);
     const result = await User.update({
