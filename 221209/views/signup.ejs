@@ -56,20 +56,22 @@
             <h1 class="card__heading">
                 <span> 회원가입 </span>
             </h1>
-            <form class="card__form" id="form_register">
-                <label for="name" class="visually">이름 :  </label>
-                <div><input id="name" class="card__input" type="text" name="name" required /></div>
-                <label for="id" class="visually">아이디 :  </label>
-                <div><input id="id" class="card__input" type="text" name="id" min="5" max="20" required /></div>
-                <label for="password" class="visually">비밀번호 : </label>
-                <input id="password" class="card__input" type="password" name="pw" required />
-                <label for="nickName" class="visually">닉네임 : </label>
-                <input id="nickName" class="card__input" type="text" name="nickName" required />
-                 <button class="card__button" type="button" onclick="register();">
-                    <span>회원가입</span>
-                </button>
+            <div id="mt-3" class="img_btns">
+                <form class="card__form" id="form_register">
+                    <label for="name" class="visually">이름 :  </label>
+                    <div><input id="name" class="card__input" type="text" name="name" required /></div>
+                    <label for="id" class="visually">아이디 :  </label>
+                    <div><input id="id" class="card__input" type="text" name="id" min="5" max="20" required /></div>
+                    <label for="password" class="visually">비밀번호 : </label>
+                    <input id="password" class="card__input" type="password" name="pw" required />
+                    <label for="nickName" class="visually">닉네임 : </label>
+                    <input id="nickName" class="card__input" type="text" name="nickName" required />
+                     <button class="card__button" type="button" onclick="register();">
+                        <span>회원가입</span>
+                    </button>
                     <div id="result"></div>
-            </form>
+                </form>
+            </div>
             </section>
         </div>
     </body>
