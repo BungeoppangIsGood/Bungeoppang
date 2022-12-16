@@ -58,13 +58,21 @@
             /* 별점 남기기 */
             .regiSTar {
                 position: absolute;
-                top: 54.2rem;
-                width: 61rem;
-                height: 15.5rem;
+                top: 8rem;
+                width: 55rem; /* 61rem 15.5rem */
+                height: 25rem;
+                margin: 3rem;
                 display: none;
             }
             .titleStar {
-                font-size: 1.8rem;
+                font-size: 2.5rem;
+                background-color: #FFBF00;
+            }
+            #starPeople {
+                display: none;
+            }
+            .sPid {
+                font-size: 1.5rem;
             }
             /* 누르는 별점 */
             .star-rating {
@@ -75,7 +83,7 @@
             justify-content:space-around;
             padding:0 .2em;
             text-align:center;
-            width:7px;
+            width:10px;
             }
             .star-rating input {
             display:none;
@@ -95,19 +103,20 @@
                 border-color: transparent;
                 position: absolute;
                 left: 38%;
-                top: 42%;
+                top: 43%;
             }
             .starRegi {
                 position: absolute;
                 border-radius: 50px;
                 left: 65%;
                 top: 50%;
-                font-size: 1.8rem;
+                font-size: 2.5rem;
             }
             /* 버튼 */
             .button {
                 padding-left: 30px;
                 padding-right: 30px;
+                position: relative;
             }
             .button > button {
                 background-color : #FFBF00;
@@ -116,8 +125,8 @@
             #home {
                 width: 250px; 
                 position: absolute; 
-                left: 37%; 
-                top: 90%;
+                left: 36%; 
+                top: -20%;
             }
         </style>
     </head>
@@ -132,8 +141,32 @@
                 </div>
                     <ul class="list-group list-group-flush">
                     <li class="list-group-item" id="info"><img src="./img/IMG_0652.PNG" class="fish" alt="...">평점
-                        <ol style="float: right;" id = "average" ><img src="./img/5.PNG" alt=""class="stars" id="stars"><span id="aa"></span></ol>
+                        <ol style="float: right;" id = "average" ><img src="./img/5.PNG" alt=""class="stars" id="stars" onclick="stars();"><span id="aa"></span></ol>
                     </li>
+                    <div id="starPeople">
+                        <li class="list-group-item" id="info"><img src="./img/IMG_0652.PNG" class="fish" alt="...">별점을 남긴 사람들
+                            <button type="button" class="btn-close" aria-label="Close" onclick="starPeopleClose();"style="float: right; font-size: 2.8rem;"></button><br><br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <h5 class="card-title sPid">id</h5>
+                                      <p class="card-text sPstar">별</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <h5 class="card-title sPid">id</h5>
+                                      <p class="card-text sPstar">별</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                        </li>
+                    </div>
+                    
                     <li class="list-group-item" id="info"><img src="./img/IMG_0652.PNG" class="fish" alt="...">메뉴<br>
                         <ol style="float: right;" id="infoDetail">팥 2개 1000원</ol> <br>
                         <ol style="float: right;" id="infoDetail">슈크림 2개 1000원</ol>
@@ -150,7 +183,8 @@
             </div>
         </div>
         <div class="card text-dark bg-light mb-3 regiSTar jm-font" id="div2">
-            <div class="card-header titleStar"><img src="./img/IMG_0652.PNG" class="fish" alt="...">별점 남기기</div>
+            <div class="card-header titleStar"><img src="./img/IMG_0652.PNG" class="fish" alt="...">별점 남기기
+                <button type="button" class="btn-close" aria-label="Close" onclick="regiStarClose();"style="float: right; font-size: 2.8rem;"></button></div>
                 <div class="card-body contentStar">
                     <div class="star-rating starCard" id="star">
                         <input type="radio" id="5-stars" name="rating" value="5" />
@@ -169,8 +203,22 @@
             </div>
         </div>    
         <script>
+            function stars() {
+                let starPeople = document.getElementById("starPeople");
+                if (starPeople.style.display == "none") {
+                    starPeople.style.display = "block";
+                } else { 
+                    starPeople.style.display = "none";
+                }
+            }
+            stars();
+            function starPeopleClose(){
+                let starPeople = document.getElementById("starPeople");
+                starPeople.style.display = "none";
+            }
+            starPeopleClose();
             function recordStar() {
-                let button = document.querySelectorAll("button")[0];
+                let button = document.querySelectorAll("button")[1];
                 
                 button.addEventListener("click", function(){
                     let content = document.querySelector("#div2");
@@ -184,6 +232,14 @@
                 })
             }
             recordStar();
+            function regiStarClose() {
+                let button = document.querySelectorAll("button")[1];
+                let content = document.querySelector("#div2");
+                content.style.display = "none";
+                button.style.backgroundColor = "#FFBF00"
+            }
+            regiStarClose();
+
             /* 1. regiStar 버튼을 누르면  */
            function regiStar() {
                 let star = document.querySelectorAll("#star");
