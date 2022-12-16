@@ -17,7 +17,7 @@ module.exports = () => {//생성자 함수로 만든 객체 넣는다. 안에 �
         done(null, exUser);
       } else {
         const newUser = await User.create({
-          userId: profile._json.kakao_account.email,
+          userId: '카카오'+profile._json.kakao_account.email,
           nickName: profile._json.properties.nickname,
           snsId: profile.id,
           provider: 'kakao',

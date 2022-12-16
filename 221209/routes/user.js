@@ -22,8 +22,8 @@ const upload = multer({
 
 
 router.patch('/profileImgUpdate', upload.single('profileImg'), controller.profileImg_update)
-router.patch('update', controller.mypage_update)
-router.delete('delete', controller.user_delete)
+router.patch('/update', controller.mypage_update)
+router.delete('/delete', controller.user_delete)
 
 module.exports = router;
 
