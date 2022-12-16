@@ -28,10 +28,6 @@
                     profileImg:form.profileImg.value
                 };
                 
-                // if(form.pw.value === 123123) {
-                //    form.pw.value = false;
-                // }
-                // console.log(form.pw.value);                    
                 axios({
                     method: 'patch',
                     url: '/user/update', // 내정보 수정 url
