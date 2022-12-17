@@ -43,11 +43,11 @@
             }
             .detail {
                 width: 100%;
-                margin-top: 100px;
+                padding: 30px;
+              margin-top: 100px;
                 position: absolute;
                 display: block;
                 text-align: center;
-                padding: 10px;
             }
             .card {
                 background-color: #F5ECCE;
@@ -82,7 +82,18 @@
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text norang" id="inputGroup-sizing-default">가게 주소</span>
-                            <input type="text" class="form-control" aria-label="Sizing example input" name="address" aria-describedby="inputGroup-sizing-default" placeholder="" readonly>
+                            <span>
+                                <input
+                                  style="font-size: 15px; width: 219px; font-weight: bold"
+                                  class="form-control"
+                                  type="text"
+                                  name="address"
+                                  value=""
+                                  aria-label="Disabled input example"
+                                  disabled
+                                  readonly
+                                />
+                              </span>
                         </div>
                         <p style="font-size: 1.3rem;">메뉴 등록
                         </p>
@@ -96,7 +107,7 @@
                         </div>
                         <br>
                         <div class="input-group mb-3">
-                            <span class="input-group-text norang" id="inputGroup-sizing-default" name="operatingTime">가게 운영 요일</span>
+                            <span class="input-group-text norang" id="inputGroup-sizing-default" name="operatingTime">운영 요일</span>
                             <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="요일 입력(ex. 월, 화, 수)">
                         </div>
                         <br>
@@ -107,6 +118,11 @@
             </div>
         </div>
     <script>
+        /* 주소 가져오기 */
+        const address = document.querySelector(".form-control");
+        console.log(sessionStorage.getItem("shopAddress"));
+        address.value = sessionStorage.getItem("shopAddress");
+
         /* 가게 등록하기 버튼으르 누르면 */
         function editStore() {
             let form = document.getElementById("form_info");
@@ -114,7 +130,7 @@
                 method: "patch",
                 url: "/store/Edit",
                 data: {
-                    store: form.store.value,
+                    storeName: form.store.value,
                     address: form.address.value,
                     menu: {
                         팥: form.price1.value,
