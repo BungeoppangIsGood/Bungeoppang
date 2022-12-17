@@ -72,7 +72,13 @@
                 display: none;
             }
             .sPid {
-                font-size: 1.5rem;
+                font-size: 2rem;
+            }
+            .sPuserId {
+                display: none;
+            }
+            #starPeopleStars {
+                width: 200px;
             }
             /* 누르는 별점 */
             .star-rating {
@@ -129,6 +135,9 @@
                 top: -20%;
             }
         </style>
+    <script>
+        console.log('<%=ratinglist%>');
+    </script>
     </head>
     <body>
         <div class="wrap">
@@ -136,43 +145,38 @@
                 <div class="card" style="width: 100%">
                     <img src="./img/IMG_0652.PNG" class="card-img-top animate__animated animate__tada"alt="..."><!-- 아이콘 부분 -->
                     <div class="card-body">
-                    <h5 class="card-title jm-font" id="storeName">행복한 붕어빵</h5>
+                    <h5 class="card-title jm-font" name="storeName" id="storeName"><%=data.storeName%></h5>
                     <p class="card-text"></p>
                 </div>
                     <ul class="list-group list-group-flush">
-                    <li class="list-group-item" id="info"><img src="./img/IMG_0652.PNG" class="fish" alt="...">평점
-                        <ol style="float: right;" id = "average" ><img src="./img/5.PNG" alt=""class="stars" id="stars" onclick="stars();"><span id="aa"></span></ol>
+                    <li class="list-group-item" id="info" onclick="stars();"><img src="./img/IMG_0652.PNG" class="fish" alt="...">평점
+                        <ol style="float: right;" id = "average" ><img src="./img/5.PNG" alt=""class="stars" id="stars"><span id="aa"></span></ol>
                     </li>
                     <div id="starPeople">
                         <li class="list-group-item" id="info"><img src="./img/IMG_0652.PNG" class="fish" alt="...">별점을 남긴 사람들
                             <button type="button" class="btn-close" aria-label="Close" onclick="starPeopleClose();"style="float: right; font-size: 2.8rem;"></button><br><br>
                             <div class="row">
-                                <div class="col-sm-6">
-                                  <div class="card">
-                                    <div class="card-body">
-                                      <h5 class="card-title sPid">id</h5>
-                                      <p class="card-text sPstar">별</p>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-6">
-                                  <div class="card">
-                                    <div class="card-body">
-                                      <h5 class="card-title sPid">id</h5>
-                                      <p class="card-text sPstar">별</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
+                                <%for(var i = 0; i<ratinglist.length; i++) {%>
+                                    <div class="col-sm-12">
+                                        <div class="card">
+                                          <div class="card-body">
+                                            <h5 class="card-title sPid"><%=ratinglist[i].User_nickName%></h5>
+                                            <h5 class="card-title sPuserId"><%=ratinglist[i].User_nickName%></h5>
+                                            <p class="card-text sPstar"><img src="./img/<%=ratinglist[i].star%>.PNG" alt=""id="starPeopleStars"></p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                <% } %>
+                            </div>
                         </li>
                     </div>
                     
                     <li class="list-group-item" id="info"><img src="./img/IMG_0652.PNG" class="fish" alt="...">메뉴<br>
-                        <ol style="float: right;" id="infoDetail">팥 2개 1000원</ol> <br>
-                        <ol style="float: right;" id="infoDetail">슈크림 2개 1000원</ol>
+                        <ol style="float: right;" id="infoDetail"><%=menu1.menuName%> <%=menu1.price%></ol> <br>
+                        <ol style="float: right;" id="infoDetail"><%=menu2.menuName%> <%=menu2.price%></ol>
                     </li>
                     <li class="list-group-item" id="info"><img src="./img/IMG_0652.PNG" class="fish" alt="...">이용 요일
-                        <ol style="float: right;" id="infoDetail">Open: 월,화,수,목,금</ol>
+                        <ol style="float: right;" id="infoDetail">Open: <%=data.operatingTime%></ol>
                     </li>
                     </ul>
                     <div class="card-body button">
@@ -186,22 +190,61 @@
             <div class="card-header titleStar"><img src="./img/IMG_0652.PNG" class="fish" alt="...">별점 남기기
                 <button type="button" class="btn-close" aria-label="Close" onclick="regiStarClose();"style="float: right; font-size: 2.8rem;"></button></div>
                 <div class="card-body contentStar">
-                    <div class="star-rating starCard" id="star">
-                        <input type="radio" id="5-stars" name="rating" value="5" />
-                        <label for="5-stars" class="star">&#9733;</label>
-                        <input type="radio" id="4-stars" name="rating" value="4" />
-                        <label for="4-stars" class="star">&#9733;</label>
-                        <input type="radio" id="3-stars" name="rating" value="3" />
-                        <label for="3-stars" class="star">&#9733;</label>
-                        <input type="radio" id="2-stars" name="rating" value="2" />
-                        <label for="2-stars" class="star">&#9733;</label>
-                        <input type="radio" id="1-star" name="rating" value="1" />
-                        <label for="1-star" class="star">&#9733;</label>
-                    </div>
-                    <button class="btn btn-warning starRegi" onclick="regiStar();">등록</button>
+                    <form id="form_star">
+                        <div class="star-rating starCard" id="star">
+                            <input type="radio" id="5-stars" name="rating" value="5" />
+                            <label for="5-stars" class="star">&#9733;</label>
+                            <input type="radio" id="4-stars" name="rating" value="4" />
+                            <label for="4-stars" class="star">&#9733;</label>
+                            <input type="radio" id="3-stars" name="rating" value="3" />
+                            <label for="3-stars" class="star">&#9733;</label>
+                            <input type="radio" id="2-stars" name="rating" value="2" />
+                            <label for="2-stars" class="star">&#9733;</label>
+                            <input type="radio" id="1-star" name="rating" value="1" />
+                            <label for="1-star" class="star">&#9733;</label>
+                        </div>
+                        <button class="btn btn-warning starRegi" onclick="regiStar();">등록</button>
+                    </form>
                 </div>
             </div>
-        </div>    
+        </div>
+        <span>
+            <input
+              style="font-size: 15px; width: 300px; font-weight: bold"
+              class="form-control"
+              type="text"
+              value=""
+              aria-label="Disabled input example"
+              disabled
+              readonly
+            />
+          </span>
+        </div>
+        <div>
+           <span>
+             <input
+               style="font-size: 15px; width: 300px; font-weight: bold"
+               class="form-control2"
+               type="text"
+               value=""
+               aria-label="Disabled input example"
+               disabled
+               readonly
+             />
+           </span>
+         </div>
+         <div>
+           <span>
+             <input
+               style="font-size: 15px; width: 300px; font-weight: bold"
+               class="form-control3"
+               type="text"
+               value=""
+               aria-label="Disabled input example"
+               disabled
+               readonly
+             />
+           </span>
         <script>
             function stars() {
                 let starPeople = document.getElementById("starPeople");
@@ -239,22 +282,37 @@
                 button.style.backgroundColor = "#FFBF00"
             }
             regiStarClose();
-
             /* 1. regiStar 버튼을 누르면  */
-           function regiStar() {
-                let star = document.querySelectorAll("#star");
-                let rating = {
-                    rating: star.star.value
+            let cnt = 0;
+            function regiStar() {
+                cnt++;
+                let form = document.getElementById("form_star");
+                let data = {
+                    rating: form.star.value
                 }
                 axios({
                     method: 'post',
                     url: '/store/star',
-                    data: rating
+                    data: data
                 })
                 .then(() => {
                     alert("별점 남기기 성공");
                     document.querySelector("#div2").style.display = "none";
                 })
+                .then((rating)=>{
+                    const row = document.getElementById("row");
+                    const temp = document.createElement("div");
+                    temp.innerHTML = `<div class="col-sm-12">
+                                        <div class="card">
+                                          <div class="card-body">
+                                            <h5 class="card-title sPid">${rating.User_nickName}</h5>
+                                            <h5 class="card-title sPuserId">${rating.user}</h5>
+                                            <p class="card-text sPstar"><img src="./img/${rating.rating}.PNG" alt=""id="starPeopleStars"></p>
+                                          </div>
+                                        </div>
+                                      </div>`
+                    row.append(temp);
+            })
                 .then((req) => {
                     let stars = document.getElementById('stars').src
                     if(req.ratingAVG >= 5){
@@ -291,12 +349,22 @@
                         stars.innerText= "./img/0.PNG"
                         document.getElementById("aa").innerText = req.ratingAVG
                     } 
-                    
                 })
             }
             function home() {
                 window.location.href = "/map"
             }
+            const address = document.querySelector(".form-control");
+             const lat2 = document.querySelector(".form-control2");
+             const lon2 = document.querySelector(".form-control3");
+             lat2.style.display = "none";
+             lon2.style.display = "none";
+             console.log(sessionStorage.getItem("shopAddress"));
+             console.log(sessionStorage.getItem("shopLat"));
+             console.log(sessionStorage.getItem("shopLon"));
+             address.value = sessionStorage.getItem("shopAddress");
+             lat2.value = sessionStorage.getItem("shopLat");
+             lon2.value =  sessionStorage.getItem("shopLon");
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     </body>
