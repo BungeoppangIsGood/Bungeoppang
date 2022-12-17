@@ -43,7 +43,7 @@ router.get('/storeDetail', async (req, res) => {
       attributes: ['User_nickName', 'star']
     }]
   })
-  console.log(store.dataValues)
+  console.log(store)
 
 
   const avg = await Review.findAll({

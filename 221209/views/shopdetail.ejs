@@ -295,8 +295,10 @@
             function regiStar() {
                 cnt++;
                 let form = document.getElementById("form_star");
+                const storeName = document.querySelector("#storeName").innerText;
                 let data = {
-                    rating: form.rating.value
+                    rating: form.rating.value,
+                    store: storeName
                 }
                 axios({
                     method: 'post',
