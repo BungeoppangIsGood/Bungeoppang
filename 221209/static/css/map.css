@@ -43,10 +43,12 @@ nav {
   bottom: 80px;
   z-index: 1;
 }
+
 p {
   font-size: 11px;
   margin: 0;
 }
+
 .searchBtn {
   background-color: #ffc10f;
   border-color: #ffc10f;
@@ -55,4 +57,14 @@ p {
   align-items: center;
   justify-content: center;
   margin-left: 5px;
+}
+
+.marker {
+  background: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

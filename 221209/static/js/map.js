@@ -21,9 +21,13 @@ const map = new ol.Map({
 });
 
 let places;
-
 const searchBox = document.getElementById("searchBox");
 searchBox.addEventListener("submit", search);
+
+function fromLonLat(lon, lat) {
+  return ol.proj.fromLonLat([lon, lat]);
+}
+
 async function search() {
   event.preventDefault();
   const response = await axios({
@@ -43,13 +47,63 @@ async function search() {
   }
 }
 
+let markerStorage = [];
+
+function drawMarker(store) {
+  const position = fromLonLat(store.lon, store.lat);
+  const div = document.createElement("div");
+  div.innerHTML = `<div class="marker"><img src="../img/mapMarker.png"></div>`;
+  const overlay = new ol.Overlay({
+    position,
+    positioning: "center-center",
+    element: div,
+  });
+  map.addOverlay(overlay);
+  const marker = { id: store.id, overlay };
+  markerStorage.push(marker);
+}
+
+async function getStoreList() {
+  const [x1, y1, x2, y2] = view.calculateExtent(map.getSize());
+  const southWest = ol.proj.transform([x1, y1], DST, SRC);
+  const northEast = ol.proj.transform([x2, y2], DST, SRC);
+  const response = await axios({
+    method: "POST",
+    url: "    http://knsan189.iptime.org:8080/api/map/storeList",
+
+    data: {
+      southWest: { lon: southWest[0], lat: southWest[1] },
+      northEast: { lon: northEast[0], lat: northEast[1] },
+    },
+  });
+  return response.data;
+}
+
+async function drawStores() {
+  const storeList = await getStoreList();
+
+  // 첫번째 검사
+  storeList.forEach((store) => {
+    // 저장소에 없는 가게들만 그리기
+    if (markerStorage.every((marker) => marker.id !== store.id)) {
+      drawMarker(store);
+    }
+  });
+
+  // 두번째 검사
+  markerStorage.forEach((marker) => {
+    if (storeList.every((store) => store.id !== marker.id)) {
+      map.removeOverlay(marker.overlay);
+      markerStorage = markerStorage.filter((m) => m.id !== marker.id);
+    }
+  });
+}
+
+map.addEventListener("moveend", drawStores);
+
 function clickMove(i) {
   const center = ol.proj.fromLonLat([places[i].point.x, places[i].point.y]);
-  view.animate({
-    center,
-    duration: 2000,
-    zoom: 16,
-  });
+  view.animate({ center, duration: 2000, zoom: 16 });
 }
 
 function clickCurrentLocation() {
