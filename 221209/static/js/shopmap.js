@@ -64,5 +64,6 @@ function test() {
   // 이름 수정
   const address = document.querySelector(".form-control");
   sessionStorage.setItem("shopAddress", address.value);
-  location.href = "/shopregister";
+
+  location.href = "../views/tset.html";
 }
