@@ -5,6 +5,7 @@ const {Store} = require('../models')
 const {Review} = require('../models')
 const {Menu} = require('../models')
 const Sequelize = require('sequelize')
+const Op = Sequelize.Op;
 
 router.get('/signin', (req, res) => {
   console.log(req.user)
@@ -21,6 +22,9 @@ router.get('/', (req, res) => {
 })
 router.get('/storeRegister', (req, res) => {
   res.render('shopregister')
+})
+router.get('/storeMap', (req, res) => {
+  res.render('shopmap')
 })
 
 
@@ -107,4 +111,30 @@ router.get('/mypage', async (req, res) => {
 })
 
 
+router.post("/storeList", async (req, res) => {
+ 
+    const { northEast, southWest } = req.body;
+    const x1 = southWest.lon;
+    const y1 = southWest.lat;
+    const x2 = northEast.lon;
+    const y2 = northEast.lat;
+  
+  const result = Store.findAll({
+    attributes:['storeName', 'address', 'latitude', 'longitude'],
+    where: {
+      [Op.and]:[
+        {
+          [Op.between]:[x1, x2]
+        },
+        {
+          [Op.between]:[y1, y2]
+        },
+      ]
+    }
+  })
+  console.log(result)
+  
+  res.send(result);
+
+  })
 module.exports = router;
