@@ -20,11 +20,11 @@ class Store extends Sequelize.Model {
                allowNull: false,
             },
             latitude: {//위도
-               type: Sequelize.INTEGER,
+               type: Sequelize.FLOAT(50),
                allowNull: false
             },
             longitude: {//경도 
-               type: Sequelize.INTEGER,
+               type: Sequelize.FLOAT(50),
                allowNull: false
             }
          },

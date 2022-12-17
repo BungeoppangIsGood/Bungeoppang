@@ -25,6 +25,7 @@ const searchBox = document.getElementById("searchBox");
 searchBox.addEventListener("submit", search);
 
 function fromLonLat(lon, lat) {
+  console.log(lon,lat)
   return ol.proj.fromLonLat([lon, lat]);
 }
 
@@ -50,7 +51,8 @@ async function search() {
 let markerStorage = [];
 
 function drawMarker(store) {
-  const position = fromLonLat(store.lon, store.lat);
+  const position = fromLonLat(store.longitude, store.latitude);
+  console.log(position)
   const div = document.createElement("div");
   div.innerHTML = `<div class="marker"><img src="../img/mapMarker.png"></div>`;
   const overlay = new ol.Overlay({
@@ -69,7 +71,7 @@ async function getStoreList() {
   const northEast = ol.proj.transform([x2, y2], DST, SRC);
   const response = await axios({
     method: "POST",
-    url: "    http://knsan189.iptime.org:8080/api/map/storeList",
+    url: "http://localhost:8000/storeList",
 
     data: {
       southWest: { lon: southWest[0], lat: southWest[1] },
@@ -81,6 +83,7 @@ async function getStoreList() {
 
 async function drawStores() {
   const storeList = await getStoreList();
+  console.log(storeList)
 
   // 첫번째 검사
   storeList.forEach((store) => {
