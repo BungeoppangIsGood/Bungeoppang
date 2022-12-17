@@ -20,6 +20,8 @@ const map = new ol.Map({
   controls: [],
 });
 
+// 역 검색하기
+
 let places;
 const searchBox = document.getElementById("searchBox");
 searchBox.addEventListener("submit", search);
@@ -48,13 +50,15 @@ async function search() {
   }
 }
 
+// 가게 정보 화면에 노출시키기
+
 let markerStorage = [];
 
 function drawMarker(store) {
   const position = fromLonLat(store.longitude, store.latitude);
   console.log(position)
   const div = document.createElement("div");
-  div.innerHTML = `<div class="marker"><img src="../img/mapMarker.png"></div>`;
+  div.innerHTML = `<div class="marker" onclick="clickMarker(${store.storeName})"></div>`;
   const overlay = new ol.Overlay({
     position,
     positioning: "center-center",
@@ -71,7 +75,7 @@ async function getStoreList() {
   const northEast = ol.proj.transform([x2, y2], DST, SRC);
   const response = await axios({
     method: "POST",
-    url: "http://localhost:8000/storeList",
+    url: "http://knsan189.iptime.org:8080/api/map/storeList",
 
     data: {
       southWest: { lon: southWest[0], lat: southWest[1] },
@@ -87,13 +91,11 @@ async function drawStores() {
 
   // 첫번째 검사
   storeList.forEach((store) => {
-    // 저장소에 없는 가게들만 그리기
     if (markerStorage.every((marker) => marker.id !== store.id)) {
       drawMarker(store);
     }
   });
 
-  // 두번째 검사
   markerStorage.forEach((marker) => {
     if (storeList.every((store) => store.id !== marker.id)) {
       map.removeOverlay(marker.overlay);
@@ -108,6 +110,16 @@ function clickMove(i) {
   const center = ol.proj.fromLonLat([places[i].point.x, places[i].point.y]);
   view.animate({ center, duration: 2000, zoom: 16 });
 }
+
+// 가게 상세페이지로 이동하기 (임시)
+function clickMarker(store) {
+  window.location = `http:storedetail?store=${store}`;
+  // sessionStorage.setItem("shopdetail", store);
+  // console.log(sessionStorage.getItem("shopdetail"));
+  console.log(store);
+}
+
+// 내 위치로 이동하기
 
 function clickCurrentLocation() {
   navigator.geolocation.getCurrentPosition(
@@ -131,6 +143,8 @@ function clickCurrentLocation() {
     }
   );
 }
+
+// 지도 밑에 버튼
 
 function home() {
   location.href = "/map";

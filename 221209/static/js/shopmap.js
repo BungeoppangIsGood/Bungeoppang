@@ -4,6 +4,10 @@ const xyz = new ol.source.XYZ({
   url: "http://mt0.google.com/vt/lyrs=m&h1=ko&x={x}&y={y}&z={z}",
   crossOrigin: "anonymous",
 });
+const lat2 = document.querySelector(".form-control2");
+const lon2 = document.querySelector(".form-control3");
+lat2.style.display = "none";
+lon2.style.display = "none";
 
 const view = new ol.View({
   projection: DST,
@@ -56,14 +60,21 @@ map.addEventListener("moveend", async () => {
     },
   });
   const address = document.querySelector(".form-control");
-  console.log(response.data[0].text);
+  const lat2 = document.querySelector(".form-control2");
+  const lon2 = document.querySelector(".form-control3");
   address.value = response.data[0].text;
+  lat2.value = response.config.params.lat;
+  lon2.value = response.config.params.lon;
 });
 
 function test() {
   // 이름 수정
   const address = document.querySelector(".form-control");
+  const lat2 = document.querySelector(".form-control2");
+  const lon2 = document.querySelector(".form-control3");
   sessionStorage.setItem("shopAddress", address.value);
 
-  location.href = "../views/tset.html";
+  sessionStorage.setItem("shopLat", lat2.value);
+  sessionStorage.setItem("shopLon", lon2.value);
+  location.href = "../views/test.html";
 }
