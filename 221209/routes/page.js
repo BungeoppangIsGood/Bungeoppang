@@ -43,7 +43,7 @@ router.get('/storeDetail', async (req, res) => {
       attributes: ['User_nickName', 'star']
     }]
   })
-  console.log(store.reviews) //review.dataValue로 접근
+  console.log(store.dataValues)
 
 
   const avg = await Review.findAll({
@@ -51,17 +51,17 @@ router.get('/storeDetail', async (req, res) => {
       [Sequelize.fn('avg', Sequelize.col('star')), 'rating'],
     ],
     where: {
-      store_id: store.dataValues.id,
+      store_id: store.id,
     }
   });
   
   
   const data = {
     data:store.dataValues,
-    menu1:store.menus[0].dataValues,
-    menu2:store.menus[1].dataValues,
+    menu1:store.menus[0]?.dataValues || null,
+    menu2:store.menus[1]?.dataValues || null,
     avgRating:avg[0].dataValues.rating,
-    ratinglist:store.reviews
+    ratinglist:store.reviews || 0 
   }
   
   res.render('shopdetail', data);
@@ -118,22 +118,22 @@ router.post("/storeList", async (req, res) => {
     const y1 = southWest.lat;
     const x2 = northEast.lon;
     const y2 = northEast.lat;
+    console.log(req.body)
   
-  const result = Store.findAll({
-    attributes:['storeName', 'address', 'latitude', 'longitude'],
+  const result = await Store.findAll({
+    attributes:['id', 'storeName', 'address', 'latitude', 'longitude'],
     where: {
       [Op.and]:[
         {
-          [Op.between]:[x1, x2]
+          longitude:{[Op.between]:[x1, x2]},
         },
         {
-          [Op.between]:[y1, y2]
+          latitude:{[Op.between]:[y1, y2]},
         },
       ]
     }
   })
   console.log(result)
-  
   res.send(result);
 
   })

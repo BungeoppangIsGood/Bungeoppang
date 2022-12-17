@@ -2,8 +2,16 @@ const {Store, review} = require("../models");
 const Sequelize = require('sequelize')
 
 exports.register_rating = async (req, res) => {
+  console.log(req.body)
+  const nickName = await User.findOne({
+    attributes:['nickName'],
+    where:{
+      userId: req.user
+    }
+  })
+
   const result = await review.create({
-    userId: req.user,
+    User_nickName: nickName,
     store: req.body.store,
     star: req.body.rating
   })
@@ -11,7 +19,8 @@ exports.register_rating = async (req, res) => {
 }
 
 exports.register = async (req, res) => {
-  const {storeName, address, operatingTime, menu} = req.body;
+  console.log(req.body)
+  const {storeName, address, operatingTime, menu, latitude, longitude} = req.body;
   console.log(menu.keys())
   const result = await Store.create({
     storeName,
