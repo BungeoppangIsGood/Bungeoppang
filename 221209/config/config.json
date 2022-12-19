@@ -1,16 +1,18 @@
 {
   "development": {
-    "username": "user",
-    "password": "Mghgh5483!!",
-    "database": "fish",
-    "host": "localhost",
+    "username": "dohee02",
+    "password": "dohee02",
+    "database": "Bungeoppang",
+    "host": "knsan189.iptime.org",
+    "port": 3307,
     "dialect": "mysql"
   },
   "production": {
-    "username": "user",
-    "password": "shkshk12!",
-    "database": "fish",
-    "host": "localhost",
+    "username": "dohee02",
+    "password": "dohee02",
+    "database": "Bungeoppang",
+    "host": "knsan189.iptime.org",
+    "port": 3307,
     "dialect": "mysql"
   }
 }

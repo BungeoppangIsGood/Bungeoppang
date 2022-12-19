@@ -27,7 +27,7 @@ const searchBox = document.getElementById("searchBox");
 searchBox.addEventListener("submit", search);
 
 function fromLonLat(lon, lat) {
-  console.log(lon,lat)
+  console.log(lon, lat);
   return ol.proj.fromLonLat([lon, lat]);
 }
 
@@ -56,7 +56,7 @@ let markerStorage = [];
 
 function drawMarker(store) {
   const position = fromLonLat(store.longitude, store.latitude);
-  console.log(position)
+  console.log(position);
   const div = document.createElement("div");
   div.innerHTML = `<div class="marker" onclick="clickMarker(${store.storeName})"></div>`;
   const overlay = new ol.Overlay({
@@ -87,7 +87,7 @@ async function getStoreList() {
 
 async function drawStores() {
   const storeList = await getStoreList();
-  console.log(storeList)
+  console.log(storeList);
 
   // 첫번째 검사
   storeList.forEach((store) => {
@@ -151,7 +151,7 @@ function home() {
 }
 
 function registration() {
-  location.href = "/shopmap";
+  location.href = "/storeMap";
 }
 
 function myPage() {
