@@ -76,5 +76,5 @@ function test() {
 
   sessionStorage.setItem("shopLat", lat2.value);
   sessionStorage.setItem("shopLon", lon2.value);
-  location.href = "../views/test.html";
+  location.href = "/storeRegister";
 }
