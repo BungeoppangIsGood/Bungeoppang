@@ -56,7 +56,7 @@ let markerStorage = [];
 function drawMarker(store) {
   const position = fromLonLat(store.longitude, store.latitude);
   const div = document.createElement("div");
-  div.innerHTML = `<div class="marker"  onclick="clickMarker(${store.id})"><img style="  width: 32px; height: 32px" src="/static/img/mapMarker.png"></div>`;
+  div.innerHTML = `<div class="marker"  onclick="clickMarker('${store.storeName}')"><img style="  width: 32px; height: 32px" src="/static/img/mapMarker.png"></div>`;
   const overlay = new ol.Overlay({
     position,
     positioning: "center-center",
@@ -73,7 +73,7 @@ async function getStoreList() {
   const northEast = ol.proj.transform([x2, y2], DST, SRC);
   const response = await axios({
     method: "POST",
-    url: "http://knsan189.iptime.org:8080/api/map/storeList",
+    url: "/storeList",
 
     data: {
       southWest: { lon: southWest[0], lat: southWest[1] },
@@ -110,12 +110,7 @@ function clickMove(i) {
 
 // 가게 상세페이지로 이동하기 (임시)
 function clickMarker(store) {
-  sessionStorage.setItem("shopdetails", store);
-  console.log(sessionStorage.getItem("shopdetails"));
-  // window.location = `http:storedetail?store=${store}`;
-  // // sessionStorage.setItem("shopdetail", store);
-  // // console.log(sessionStorage.getItem("shopdetail"));
-  // console.log(store);
+  location.href = `/storeDetail?store=${store}`;
 }
 
 // 내 위치로 이동하기
