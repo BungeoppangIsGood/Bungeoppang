@@ -15,16 +15,32 @@ exports.register_rating = async (req, res) => {
     where:{
       storeName: req.body.store 
     }
-  })
+  })//리뷰를 남기기위해서 id값 가져옴
+
+ 
   console.log(storeId);
 
   const result = await Review.create({
     User_nickName: nickName.dataValues.nickName,
     Store_id: storeId.dataValues.id,
     star: req.body.rating,
-
   })
-  res.send(result)
+
+  const avg = await Review.findAll({
+    attributes: [[Sequelize.fn("avg", Sequelize.col("star")), "rating"]],
+    where: {
+      store_id: storeId.id,
+    },
+  });
+  console.log(avg[0].dataValues.rating)
+
+  const data = {
+    nickName: nickName.nickName,
+    rating: req.body.rating,
+    ratingAVG: Number(avg[0].dataValues.rating).toFixed(1),
+  }
+
+  res.send(data)
 }
 
 exports.register = async (req, res) => {
