@@ -35,7 +35,9 @@ exports.mypage_update = async (req, res) => {
     },{
       where: {userId : req.user}
     })
+    res.send(result)
   }
+
 }
 
 

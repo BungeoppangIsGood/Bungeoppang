@@ -5,6 +5,7 @@ const { Store } = require("../models");
 const { Review } = require("../models");
 const { Menu } = require("../models");
 const Sequelize = require("sequelize");
+const {isLoggedIn} = require('./middlewares')
 const Op = Sequelize.Op;
 
 router.get("/signin", (req, res) => {
@@ -20,7 +21,7 @@ router.get("/main", (req, res) => {
 router.get("/", (req, res) => {
   res.render("map");
 });
-router.get("/storeRegister", (req, res) => {
+router.get("/storeRegister", isLoggedIn, (req, res) => {
   res.render("shopregister");
 });
 router.get("/storeMap", (req, res) => {
@@ -60,10 +61,10 @@ router.get("/storeDetail", async (req, res) => {
     ratinglist: store.reviews || 0,
   };
 
-  res.render("shopdetail", data);
+  res.render("shopdetail", data); 
 });
 
-router.get("/storeEdit", async (req, res) => {
+router.get("/storeEdit", isLoggedIn, async (req, res) => {
   console.log(req.query); //다양한 url모듈 써보기
   const result = await Store.findOne({
     where: { storeName: req.query.store },
@@ -84,7 +85,7 @@ router.get("/storeEdit", async (req, res) => {
   res.render("shopedit", data);
 });
 
-router.get("/mypage", async (req, res) => {
+router.get("/mypage", isLoggedIn, async (req, res) => {
   console.log("req.user", req.user);
   const result = await User.findOne({
     where: {
