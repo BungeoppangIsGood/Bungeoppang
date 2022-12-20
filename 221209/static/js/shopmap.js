@@ -78,3 +78,7 @@ function test() {
   sessionStorage.setItem("shopLon", lon2.value);
   location.href = "/storeRegister";
 }
+
+function closes() {
+  location.href = "/";
+}
