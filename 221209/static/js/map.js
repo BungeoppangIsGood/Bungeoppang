@@ -58,7 +58,7 @@ function drawMarker(store) {
   const position = fromLonLat(store.longitude, store.latitude);
   console.log(position);
   const div = document.createElement("div");
-  div.innerHTML = `<div class="marker" onclick="clickMarker(${store.storeName})"></div>`;
+  div.innerHTML = `<div class="marker"  onclick="clickMarker(${store.storeName})"><img style="  width: 32px; height: 32px" src="/static/img/mapMarker.png"></div>`;
   const overlay = new ol.Overlay({
     position,
     positioning: "center-center",
@@ -159,5 +159,5 @@ function myPage() {
 }
 
 function logOut() {
-  console.log("로그아웃");
+  location.href = "/main";
 }
