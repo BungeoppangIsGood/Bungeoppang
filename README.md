@@ -18,7 +18,7 @@
 |이채연(FE)|금서하(FE)|박도희(FE)|한승보(BE)| 
 |:---|:---|:---|:---|
 |사진|사진|사진|사진| 
-|깃허브주소|깃허브주소|깃허브주소|깃허브주소| 
+|<a href="https://github.com/leechaeyeon321"><img src="https://img.shields.io/badge/GitHub-181717?style=plastic&logo=GitHub&logoColor=white"/></a> |<a href="https://github.com/seohags"><img src="https://img.shields.io/badge/GitHub-181717?style=plastic&logo=GitHub&logoColor=white"/></a>|<a href="https://github.com/dolahee"><img src="https://img.shields.io/badge/GitHub-181717?style=plastic&logo=GitHub&logoColor=white"/></a>|<a href="https://github.com/boseungdl"><img src="https://img.shields.io/badge/GitHub-181717?style=plastic&logo=GitHub&logoColor=white"/></a>| 
 
 <h1> ✍️ 기술 스택 </h1>
 <h2>  Front-end </h2>
