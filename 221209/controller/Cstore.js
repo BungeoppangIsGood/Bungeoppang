@@ -17,7 +17,7 @@ exports.register_rating = async (req, res) => {
     }
   })
   console.log(storeId);
-  
+
   const result = await Review.create({
     User_nickName: nickName.dataValues.nickName,
     Store_id: storeId.dataValues.id,
@@ -28,17 +28,16 @@ exports.register_rating = async (req, res) => {
 }
 
 exports.register = async (req, res) => {
-  const {storeName, address, menu, operatingTime} = req.body;
-  const latitude = 123
-  const longitude = 123
-
+  const {storeName, address, menu, operatingTime,} = req.body;
+  const latitude = 123;
+  const longitude = 123;
   const userId = await User.findOne({
     attributes:['id'],
     where: {
       userId : req.user,
     }
   })
-  console.log(userId.id)
+
   const store = await Store.create({
     storeName,
     address,
@@ -51,9 +50,49 @@ exports.register = async (req, res) => {
   menu.forEach((el) => {
     el.Store_id = store.dataValues.id
   }) 
-  console.log(menu)
+  console.log(store)
   const result2 = await Menu.bulkCreate(menu)
-  res.send('등록성공');
+  res.send(store.storeName);
+}
+
+exports.Edit = async (req, res) => {
+  console.log(req.body)
+  const {store, address, operatingTime} = req.body;
+  //위도, 경도등도 넣어줘야한다.
+
+  const store1 = await Store.update({
+    storeName:store,
+    address,
+    operatingTime,
+   
+  },{
+    where: {
+      storeName: store
+    }
+  })
+
+
+  const storeId = await Store.findOne({
+    attributes: ['id'],
+    where: {
+      storeName: store
+    }
+  })//메뉴를 저장하려면 storeid를 알아야한다.
+
+  const menuId = await Menu.findAll({
+    attributes: ['id'],
+    where:{
+      store_id : storeId.id 
+    }
+  })//메뉴를 한 번에 수정하려면 menu의 id값들을 primary값을 알아야한다.
+
+  menu.forEach((el, i) => {
+    el.id = menuId[i].id
+  }) 
+
+  const update= await Menu.bulkCreate(menu, {updateOnDuplicate: ['id']})
+
+  res.send(store);
 }
 
 //가게 페이지 render시에 필요
