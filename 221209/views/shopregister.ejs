@@ -21,77 +21,24 @@
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/ol@v7.1.0/ol.css"
         />
-        <link rel="icon" href="./img/mapIcon.PNG">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="icon" href="./static/img/mapIcon.PNG">
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <style>
-            @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
-            .jm-font{
-                font-family: 'Noto Sans KR', sans-serif;
-            }
-            body {
-                background-color: #F5ECCE;
-                max-width: 100%;
-                align-items: center;
-                justify-content: center;
-                display: flex;
-                flex-direction: column;
-            }
-            .wrap{
-                width: 500px;
-                height: 100vh;
-                position: relative;
-                justify-content: center;
-                align-items: center;
-                font-size: 1.8rem;
-            
-            }
-            .menu {
-                margin-top: 10px;
-            }
-            .detail {
-                width: 100%;
-                padding: 30px;
-                margin-top: 100px;
-                position: absolute;
-                display: block;
-                text-align: center;
-            }
-            .card {
-                background-color: #F5ECCE;
-            }
-            .norang {
-                width: 8.5rem;
-                display: block;
-                background-color: #F5DA81;
-                
-            }
-            .register {
-                position: absolute;
-                left: 60%;
-                top: 95%;
-            }
-            #registerHome {
-              width: 45px; 
-              position: absolute; 
-              left: 28%; 
-              top: 94%;
-            }
-        </style>
+        <link rel="stylesheet" href="../static/css/shopregister.css" />
     </head>
     <body>
         <div class="wrap">
             <div class="scene flex detail jm-font">
                 <div class="card" style="border: none;">
-                    <form id="form_info">
+                    <form id="form_info" class="test">
                         <div class="input-group mb-3">
                             <span class="input-group-text norang" id="inputGroup-sizing-default">가게 이름</span>
-                            <input type="text" class="form-control" aria-label="Sizing example input" name="store" aria-describedby="inputGroup-sizing-default" placeholder="등록할 가게 이름 입력">
+                            <input type="text" class="form-control" aria-label="Sizing example input" name="store" aria-describedby="inputGroup-sizing-default" placeholder="등록할 가게 이름 입력" style="font-size: 13px;" required>
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text norang" inputGroup-sizing-default>가게 주소</span>
-                            <span>
                                 <input
-                                  style="font-size: 15px; width: 305px; font-weight: bold; background-color: white;"
+                                  style="font-size: 13px; font-weight: bold; background-color: white;"
                                   class="storeAddress form-control"
                                   type="text"
                                   name="address"
@@ -100,33 +47,40 @@
                                   disabled
                                   readonly
                                 />
-                              </span>
                         </div>
                         <p style="font-size: 1.3rem;">메뉴 등록
                         </p>
                         <div class="input-group menu">
                             <span class="input-group-text norang">팥</span>
-                            <input type="text" aria-label="Last name" name="price1" class="form-control"placeholder="가격 ex) 2개1000원" id="price1">
+                            <input type="text" aria-label="Last name" name="price1" class="form-control"placeholder="가격 ex) 2개1000원" id="price1" style="font-size: 13px;" required>
                         </div>
                         <div class="input-group menu">
                             <span class="input-group-text norang">슈크림</span>
-                            <input type="text" aria-label="Last name"  name="price2" class="form-control"placeholder="가격 ex) 2개1000원" id="price2">
+                            <input type="text" aria-label="Last name"  name="price2" class="form-control"placeholder="가격 ex) 2개1000원" id="price2" style="font-size: 13px;" required>
                         </div>
                         <br>
                         <div class="input-group mb-3">
                             <span class="input-group-text norang" id="inputGroup-sizing-default" name="operatingTime">운영 요일</span>
-                            <input 
-                            type="text" 
+                            <input
+                            style="font-size: 13px;"
+                            type="text"
+                            name="operatingTime"
                             class="form-control" 
                             aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-default" 
                             pattern="^([월|화|수|목|금|토|일])$"
                             title="ex. 월화수와 같이 입력해 주십시오."
-                            placeholder="요일 입력(ex. 월화수)"/>
+                            placeholder="요일 입력(ex. 월화수)"
+                            required/>
                         </div>
                         <br>
-                        <img src="./img/home.png" class="card-img-top animate__animated animate__bounceIn" id="registerHome" onclick="home();">
-                        <button type="button" class="btn btn-warning register" onclick="editStore();">가게 등록하기</button>
+                        <div class="buttondiv">
+                          <span  style="font-size: 60px; margin-right: 20px;" class="material-symbols-outlined" id="registerHome" onclick="home();">
+                            home
+                            </span>
+                          <button type="button" class="btn btn-warning register" onclick="editStore();">가게 등록하기</button>
+                        </div>
+                        
                         <div class="latLon">
                             <div>
                               <span>
@@ -159,106 +113,6 @@
                 </div>
             </div>
         </div>
-        
-    <script>
-        /* 경도 및 위도 값 */
-        const lat2 = document.querySelector(".form-control2");
-        const lon2 = document.querySelector(".form-control3");
-        lat2.style.display = "none";
-        lon2.style.display = "none";
-
-        /* 주소 가져오기 */
-        const address = document.querySelector(".storeAddress");
-        console.log(sessionStorage.getItem("shopAddress"));
-        address.value = sessionStorage.getItem("shopAddress");
-        
-        /* 가게 등록하기 버튼 누르면 */
-        function editStore() {
-            let form = document.getElementById("form_info");
-            let menuName = {};
-            
-            if (팥) menuName="팥"
-            if (슈크림) menuName="슈크림"
-
-            axios({
-                method: "post",
-                url: "/store/register",
-                data: {
-                    storeName: form.store.value,
-                    address: form.address.value,
-                    menu: [
-                        {
-                            menuName: '팥',
-                            price: form.price1.value
-                        },
-                        {
-                            menuName: '슈크림',
-                            price: form.price1.value
-                        },
-                    ],
-                    operatingTime: form.operatingTime.value
-                }
-            }).then(function(data){{
-                alert("가게 정보가 등록되었습니다💛")
-                window.location.href = `/storeDetail?store=${data.storeName}`
-            }})
-        }
-        const DST = "EPSG:900913";
-        const SRC = "EPSG:4326";
-        const xyz = new ol.source.XYZ({
-        url: "http://mt0.google.com/vt/lyrs=m&h1=ko&x={x}&y={y}&z={z}",
-        crossOrigin: "anonymous",
-        });
-        const view = new ol.View({
-        projection: DST,
-        zoom: 11,
-        center: ol.proj.transform([127.0802159, 37.5383777], SRC, DST),
-        constrainResolution: true,
-        });
-        const tileLayer = new ol.layer.Tile({ source: xyz });
-        const map = new ol.Map({
-        target: "map",
-        layers: [tileLayer],
-        view,
-        controls: [],
-        });
-        function clickCurrentLocation() {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            const center = ol.proj.fromLonLat([lon, lat]);
-            view.animate({
-                center,
-                duration: 2000,
-                zoom: 16,
-            });
-            },
-            (error) => {
-            alert("위치 정보를 찾을 수 없습니다.");
-            },
-            {
-            enableHighAccuracy: true,
-            maximumAge: 0,
-            timeout: 5000,
-            }
-        );
-        }
-        map.addEventListener("moveend", async () => {
-        const center = view.getCenter();
-        const [lon, lat] = ol.proj.transform(center, DST, SRC);
-        const response = await axios({
-            method: "GET",
-            url: "http://knsan189.iptime.org:8080/api/map/address",
-            params: {
-            lat,
-            lon,
-            },
-        });
-        const address = document.querySelector(".inputMap");
-        console.log(response.data[0].text);
-        address.value = response.data[0].text;
-        });
-        </script>
+        <script src="../static/js/shopregister.js"></script>
 </body>
 </html>
