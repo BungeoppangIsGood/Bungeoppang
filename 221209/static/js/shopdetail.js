@@ -49,61 +49,35 @@ function regiStar() {
         url: '/store/star',
         data: data
     })
-    .then(() => {
-        alert("별점 남기기 성공");
+    .then((req) => {
+        //alert("별점 남기기 성공");
         document.querySelector("#div2").style.display = "none";
-    })
-    .then((rating)=>{
-        const row = document.getElementById("row");
+
+
+        console.log(req);
+        const row = document.querySelector(".row");
         const temp = document.createElement("div");
         temp.innerHTML = `<div class="col-sm-12">
                             <div class="card">
                               <div class="card-body">
-                                <h5 class="card-title sPid">${rating.User_nickName}</h5>
-                                <h5 class="card-title sPuserId">${rating.user}</h5>
-                                <p class="card-text sPstar"><img src="../static/img/${rating.rating}.PNG" alt=""id="starPeopleStars"></p>
+                                <h5 class="card-title sPid">${req.data.nickName}</h5>
+                            s   <p class="card-text sPstar"><img src="../static/img/${req.data.rating}.png" alt=""id="starPeopleStars"></p>
                               </div>
                             </div>
                           </div>`
         row.append(temp);
-})
-    .then((req) => {
-        let stars = document.getElementById('stars').src
-        if(req.ratingAVG >= 5){
-            stars.innerText= "../static/img/5.PNG"
-            document.getElementById("aa").innerText = req.ratingAVG
-        } else if ( 5 > req.ratingAVG >=4.5 ){
-            stars.innerText= "../static/img/4.5.PNG"
-            document.getElementById("aa").innerText = req.ratingAVG
-        } else if ( 4.5 > req.ratingAVG >=4 ){
-            stars.innerText= "../static/img/4.PNG"
-            document.getElementById("aa").innerText = req.ratingAVG
-        } else if ( 4 > req.ratingAVG >=3.5 ){
-            stars.innerText= "../static/img/3.5.PNG"
-            document.getElementById("aa").innerText = req.ratingAVG
-        } else if ( 3.5 > req.ratingAVG >=3 ){
-            stars.innerText= "../static/img/3.PNG"
-            document.getElementById("aa").innerText = req.ratingAVG
-        } else if ( 3 > req.ratingAVG >=2.5 ){
-            stars.innerText= "../static/img/2.5.PNG"
-            document.getElementById("aa").innerText = req.ratingAVG
-        } else if ( 2.5 > req.ratingAVG >=2 ){
-            stars.innerText= "../static/img/2.PNG"
-            document.getElementById("aa").innerText = req.ratingAVG
-        } else if ( 2 > req.ratingAVG >1.5 ){
-            stars.innerText= "../static/img/1.5.PNG"
-            document.getElementById("aa").innerText = req.ratingAVG
-        } else if ( 1.5 > req.ratingAVG >=1 ){
-            stars.innerText= "../static/img/1.PNG"
-            document.getElementById("aa").innerText = req.ratingAVG
-        } else if ( 1 > req.ratingAVG >=0.5 ){
-            stars.innerText= "../static/img/0.5.PNG"
-            document.getElementById("aa").innerText = req.ratingAVG
-        } else {
-            stars.innerText= "../static/img/0.PNG"
-            document.getElementById("aa").innerText = req.ratingAVG
-        } 
+
+
+
+        let stars = document.getElementById('stars');
+        req.data.ratingAVG = Number(req.data.ratingAVG)
+        console.log(req.data.ratingAVG, typeof req.data.ratingAVG)
+
+        stars.src = `../static/img/${Math.round(req.data.ratingAVG)}.png`
+        document.getElementById("aa").innerText = req.data.ratingAVG
+        
     })
+    
 }
 function home() {
     window.location.href = "/map"
