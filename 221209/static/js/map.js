@@ -27,7 +27,6 @@ const searchBox = document.getElementById("searchBox");
 searchBox.addEventListener("submit", search);
 
 function fromLonLat(lon, lat) {
-  console.log(lon, lat);
   return ol.proj.fromLonLat([lon, lat]);
 }
 
@@ -56,9 +55,8 @@ let markerStorage = [];
 
 function drawMarker(store) {
   const position = fromLonLat(store.longitude, store.latitude);
-  console.log(position);
   const div = document.createElement("div");
-  div.innerHTML = `<div class="marker"  onclick="clickMarker(${store.storeName})"><img style="  width: 32px; height: 32px" src="/static/img/mapMarker.png"></div>`;
+  div.innerHTML = `<div class="marker"  onclick="clickMarker(${store.id})"><img style="  width: 32px; height: 32px" src="/static/img/mapMarker.png"></div>`;
   const overlay = new ol.Overlay({
     position,
     positioning: "center-center",
@@ -87,7 +85,6 @@ async function getStoreList() {
 
 async function drawStores() {
   const storeList = await getStoreList();
-  console.log(storeList);
 
   // 첫번째 검사
   storeList.forEach((store) => {
@@ -113,10 +110,12 @@ function clickMove(i) {
 
 // 가게 상세페이지로 이동하기 (임시)
 function clickMarker(store) {
-  window.location = `http:storedetail?store=${store}`;
-  // sessionStorage.setItem("shopdetail", store);
-  // console.log(sessionStorage.getItem("shopdetail"));
-  console.log(store);
+  sessionStorage.setItem("shopdetails", store);
+  console.log(sessionStorage.getItem("shopdetails"));
+  // window.location = `http:storedetail?store=${store}`;
+  // // sessionStorage.setItem("shopdetail", store);
+  // // console.log(sessionStorage.getItem("shopdetail"));
+  // console.log(store);
 }
 
 // 내 위치로 이동하기
