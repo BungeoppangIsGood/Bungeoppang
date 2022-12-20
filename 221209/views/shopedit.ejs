@@ -25,13 +25,27 @@
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         />
-        <link rel="icon" href="./img/mapIcon.PNG">
+        <link rel="icon" href="./static/img/mapIcon.PNG">
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <style>
             @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
             .jm-font{
                 font-family: 'Noto Sans KR', sans-serif;
             }
+            body {
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+                display: flex;
+                flex-direction: column;
+             }
+             .wrapDiv{
+                width: 500px;
+                height: 100vh;
+                position: relative;
+                justify-content: center;
+                align-items: center;
+             }
             .wrap{
                 width: 100%;
                 min-width: 414px;
@@ -77,7 +91,7 @@
         </style>
     </head>
     <body>
-        <div class="wrap">
+        <div class="wrapDiv">
             <div class="scene flex detail jm-font">
                 <div class="wrap">
                         <div id="map" style="height: 20rem;"></div>
@@ -98,16 +112,44 @@
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text norang" id="inputGroup-sizing-default">가게 주소</span>
-                                <input
-                                    style="font-size: 15px; width: 239px; font-weight: bold;"
-                                    class="inputMap form-control"
-                                    type="text"
-                                    value=""
-                                    aria-label="Disabled input example"
-                                    disabled
-                                    readonly
-                                />
+                            <input
+                                style="font-size: 15px; width: 239px; font-weight: bold; background-color: white;"
+                                class="inputMap form-control"
+                                type="text"
+                                value=""
+                                aria-label="Disabled input example"
+                                disabled
+                                readonly
+                            />
                         </div>
+                        <div class="latLon">
+                            <div>
+                              <span>
+                                <input
+                                  style="font-size: 15px; width: 300px; font-weight: bold"
+                                  class="form-control2"
+                                  type="text"
+                                  value=""
+                                  aria-label="Disabled input example"
+                                  disabled
+                                  readonly
+                                />
+                              </span>
+                            </div>
+                            <div>
+                              <span>
+                                <input
+                                  style="font-size: 15px; width: 300px; font-weight: bold"
+                                  class="form-control3"
+                                  type="text"
+                                  value=""
+                                  aria-label="Disabled input example"
+                                  disabled
+                                  readonly
+                                />
+                              </span>
+                            </div>
+                          </div>
                         <p style="font-size: 1.3rem;">메뉴 수정
                         </p>
                         <div class="input-group menu">
@@ -122,12 +164,21 @@
                         </div>
                         <div class="input-group menu">
                             <span class="input-group-text norang">슈크림</span>
-                            <input type="text" aria-label="Last name"  name="price2" class="form-control"placeholder="가격 ex) 2개 1000원" id="price2">
+                            <input type="text" 
+                            aria-label="Last name" 
+                            name="price2" 
+                            class="form-control"
+                            placeholder="가격 ex) 2개 1000원" 
+                            id="price2"/>
                         </div>
                         <br>
                         <div class="input-group mb-3">
                             <span class="input-group-text norang" id="inputGroup-sizing-default" name="operatingTime">운영 요일</span>
-                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="요일 입력(ex. 월, 화, 수)">
+                            <input type="text" 
+                            class="form-control" 
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-default" 
+                            placeholder="요일 입력(ex. 월화수)"/>
                         </div>
                         <br>
                         <div>
@@ -139,6 +190,12 @@
             </div>
         </div>
     <script>
+        /* 경도 및 위도 값 */
+        const lat2 = document.querySelector(".form-control2");
+        const lon2 = document.querySelector(".form-control3");
+        lat2.style.display = "none";
+        lon2.style.display = "none";
+
         const searchBox = document.getElementById("searchBox");
         async function search() {
         const response = await axios({
@@ -149,7 +206,8 @@
             },
         });
         console.log(response.data);
-        }
+        } 
+
         /* 가게 수정하기 버튼으르 누르면 */
         function editStore() {
             let form = document.getElementById("form_info");
@@ -173,6 +231,7 @@
         function home() {
             window.location.href = "./map"
         }
+
         /* 가게 주소 설정 스크립트 */
         const DST = "EPSG:900913";
         const SRC = "EPSG:4326";
