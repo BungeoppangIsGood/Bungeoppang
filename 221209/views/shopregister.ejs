@@ -81,11 +81,11 @@
                             <input type="text" class="form-control" aria-label="Sizing example input" name="store" aria-describedby="inputGroup-sizing-default" placeholder="등록할 가게 이름 입력">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text norang" id="inputGroup-sizing-default">가게 주소</span>
+                            <span class="input-group-text norang" inputGroup-sizing-default">가게 주소</span>
                             <span>
                                 <input
                                   style="font-size: 15px; width: 219px; font-weight: bold"
-                                  class="form-control"
+                                  class="storeAddress form-control"
                                   type="text"
                                   name="address"
                                   value=""
@@ -108,7 +108,7 @@
                         <br>
                         <div class="input-group mb-3">
                             <span class="input-group-text norang" id="inputGroup-sizing-default" name="operatingTime">운영 요일</span>
-                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="요일 입력(ex. 월, 화, 수)">
+                            <input type="text" class="form-control" aria-label="Sizing example input" name="operatingTime"  aria-describedby="inputGroup-sizing-default" placeholder="요일 입력(ex. 월, 화, 수)">
                         </div>
                         <br>
                         <img src="../static/img/home.png" class="card-img-top animate__animated animate__bounceIn" id="registerHome" onclick="home();">
@@ -119,28 +119,34 @@
         </div>
     <script>
         /* 주소 가져오기 */
-        const address = document.querySelector(".form-control");
+        const address = document.querySelector(".storeAddress");
         console.log(sessionStorage.getItem("shopAddress"));
         address.value = sessionStorage.getItem("shopAddress");
-
+        
         /* 가게 등록하기 버튼으르 누르면 */
         function editStore() {
             let form = document.getElementById("form_info");
             axios({
-                method: "patch",
-                url: "/store/Edit",
+                method: "post",
+                url: "/store/register",
                 data: {
                     storeName: form.store.value,
                     address: form.address.value,
-                    menu: {
-                        팥: form.price1.value,
-                        슈크림: form.price1.value,
-                    },
+                    // menu: {
+                    //     팥: form.price1.value,
+                    //     슈크림: form.price1.value,
+                    // },
+                    menu: [
+                        {
+                            menuName: '팥',
+                            price: form.price1.value
+                        },
+                    ],
                     operatingTime: form.operatingTime.value
                 }
             }).then(function(data){{
                 alert("가게 정보가 등록되었습니다💛")
-                window.location.href = "/storeDetail"
+                //window.location.href = "/storeDetail"
             }})
         }
         </script>

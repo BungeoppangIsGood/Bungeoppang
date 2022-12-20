@@ -1,4 +1,4 @@
-const {Store, Review, User} = require("../models");
+const {Store, Review, User, Menu} = require("../models");
 const Sequelize = require('sequelize')
 
 exports.register_rating = async (req, res) => {
@@ -28,14 +28,31 @@ exports.register_rating = async (req, res) => {
 }
 
 exports.register = async (req, res) => {
-  console.log(req.body)
-  const {storeName, address, operatingTime, menu, latitude, longitude} = req.body;
-  console.log(menu.keys())
-  const result = await Store.create({
+  const {storeName, address, menu, operatingTime} = req.body;
+  const latitude = 123
+  const longitude = 123
+
+  const userId = await User.findOne({
+    attributes:['id'],
+    where: {
+      userId : req.user,
+    }
+  })
+  console.log(userId.id)
+  const store = await Store.create({
     storeName,
     address,
-    operatingTime
+    operatingTime,
+    latitude,
+    longitude,
+    userId : userId.id
   })
+
+  menu.forEach((el) => {
+    el.Store_id = store.dataValues.id
+  }) 
+  console.log(menu)
+  const result2 = await Menu.bulkCreate(menu)
   res.send('등록성공');
 }
 
