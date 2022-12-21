@@ -3,7 +3,7 @@ body {
     font: 100%/1.6 "Heebo", sans-serif;
     overflow-x: hidden;
     width: 100%;
-    height: 103vh;
+    height: 100vh;
 }
 
 .flex {
@@ -25,7 +25,7 @@ body {
     border-radius: 15px;
     box-shadow: 0 10px 35px 0 rgba(54, 33, 0, 0.65);
     color: black;
-    max-width: 500px;
+    max-width: 414px;
     overflow: hidden;
     margin: 30px 40px;
     padding: 20px 30px 50px 30px;
@@ -114,3 +114,17 @@ nav {
     z-index: 1;
     width: 100%;
 }
+
+/* @media(prefers-color-scheme:light) {
+    body {
+        background-color: white;
+        color: black;
+    }
+}
+
+@media(prefers-color-scheme:dark) {
+    body {
+        background-color: black;
+        color: white;
+    }
+} */
