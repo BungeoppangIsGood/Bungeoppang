@@ -66,14 +66,16 @@
           url: "/user/update",
           data: user,
         }).then((data) => {
-          console.log(data.data);
-          if (data.data === true) {
+          if (data) {
             alert("회원정보 수정 성공");
           } else {
             alert("알 수 없는 문제가 발생했습니다.");
           }
         });
       }
+
+      // 기본 이미지로 변경
+
       function profileDelete() {
         var form = document.getElementById("form_profile");
         if (!form.checkValidity()) {
@@ -164,8 +166,8 @@
 
         <div
           style="
-            width: 180px;
-            height: 180px;
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
             overflow: hidden;
             display: flex;
@@ -315,7 +317,7 @@
           </div>
           <div class="modal-body" style="color: red">
             <img
-              src="../static/img/fish.PNG"
+              src="static/img/fish.PNG"
               style="width: 150px"
               class="animate__animated animate__hinge"
             />진짜요?
@@ -339,6 +341,6 @@
         </div>
       </div>
     </div>
-    <script src="../static/js/mypage.js"></script>
+    <script src="static/js/mypage.js"></script>
   </body>
 </html>
