@@ -61,7 +61,7 @@ function regiStar() {
                             <div class="card">
                               <div class="card-body">
                                 <h5 class="card-title sPid">${req.data.nickName}</h5>
-                               <p class="card-text sPstar"><img src="../static/img/${req.data.rating}.png" alt=""id="starPeopleStars"></p>
+                               <p class="card-text sPstar"><img src="/static/img/${req.data.rating}.png" alt=""id="starPeopleStars"></p>
                               </div>
                             </div>
                           </div>`
@@ -86,13 +86,13 @@ function edit(a){
     window.location.href = `/storeEdit?store=${a}`
 }
 const address = document.querySelector(".form-control");
- const lat2 = document.querySelector(".form-control2");
- const lon2 = document.querySelector(".form-control3");
- lat2.style.display = "none";
- lon2.style.display = "none";
- console.log(sessionStorage.getItem("shopAddress"));
- console.log(sessionStorage.getItem("shopLat"));
- console.log(sessionStorage.getItem("shopLon"));
- address.value = sessionStorage.getItem("shopAddress");
- lat2.value = sessionStorage.getItem("shopLat");
- lon2.value =  sessionStorage.getItem("shopLon");
+const lat2 = document.querySelector(".form-control2");
+const lon2 = document.querySelector(".form-control3");
+lat2.style.display = "none";
+lon2.style.display = "none";
+console.log(sessionStorage.getItem("shopAddress"));
+console.log(sessionStorage.getItem("shopLat"));
+console.log(sessionStorage.getItem("shopLon"));
+address.value = sessionStorage.getItem("shopAddress");
+lat2.value = sessionStorage.getItem("shopLat");
+lon2.value =  sessionStorage.getItem("shopLon");
