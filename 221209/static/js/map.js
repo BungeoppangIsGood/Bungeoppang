@@ -20,7 +20,7 @@ const map = new ol.Map({
   controls: [],
 });
 
-// 역 검색하기
+// 역 검색하기 a
 
 let places;
 const searchBox = document.getElementById("searchBox");
