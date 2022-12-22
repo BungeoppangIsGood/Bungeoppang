@@ -30,7 +30,7 @@
                 </div>
                     <ul class="list-group list-group-flush">
                     <li class="list-group-item" id="info" onclick="stars();"><img src="/static/img/IMG_0652.PNG" class="fish" alt="...">평점
-                        <ol style="float: right;" id = "average" ><img src="/static/img/<%=Math.round(data.ratingAVG)%>.PNG" alt=""class="stars" id="stars"><span id="aa"><%=data.ratingAVG%></span></ol>
+                        <ol style="float: right;" id = "average" ><img src="/static/img/<%=Math.round(ratingAVG)%>.PNG" alt=""class="stars" id="stars"><span id="aa"><%=ratingAVG%></span></ol>
                     </li>
                     <div id="starPeople">
                         <li class="list-group-item" id="info"><img src="/static/img/IMG_0652.PNG" class="fish" alt="...">별점을 남긴 사람들
@@ -66,7 +66,7 @@
                     <div class="card-body button">
                         <button type="button" class="btn" id="recordStar">별점 남기기</button>
                         <img src="/static/img/home.png" class="card-img-top animate__animated animate__bounceIn" id="home" onclick="home();"><!-- 홈화면 이동 -->
-                        <button type="button" class="btn btn-warning" style="float: right; font-size: 2.8rem;"><a href="/storeEdit?store=<%=data.storeName%>">가게 수정하기</a></button>
+                        <button type="button" class="btn btn-warning" style="float: right; font-size: 2.8rem;" onclick="edit();">가게 수정하기</button>
                     </div>
             </div>
         </div>

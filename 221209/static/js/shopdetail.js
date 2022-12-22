@@ -81,6 +81,9 @@ function regiStar() {
 function home() {
     window.location.href = "/map"
 }
+function edit(){
+    window.location.href = `/storeEdit?store=${data.storeName}`
+}
 const address = document.querySelector(".form-control");
  const lat2 = document.querySelector(".form-control2");
  const lon2 = document.querySelector(".form-control3");
