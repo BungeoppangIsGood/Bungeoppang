@@ -30,7 +30,7 @@
                 </div>
                     <ul class="list-group list-group-flush">
                     <li class="list-group-item" id="info" onclick="stars();"><img src="../static/img/IMG_0652.PNG" class="fish" alt="...">평점
-                        <ol style="float: right;" id = "average" ><img src="../static/img/5.PNG" alt=""class="stars" id="stars"><span id="aa"></span></ol>
+                        <ol style="float: right;" id = "average" ><img src="../static/img/<%=Math.round(req.data.ratingAVG)%>.png" alt=""class="stars" id="stars"><span id="aa"><%=data.ratingAVG%></span></ol>
                     </li>
                     <div id="starPeople">
                         <li class="list-group-item" id="info"><img src="../static/img/IMG_0652.PNG" class="fish" alt="...">별점을 남긴 사람들
@@ -42,7 +42,7 @@
                                           <div class="card-body">
                                             <h5 class="card-title sPid"><%=ratinglist[i].User_nickName%></h5>
                                             <!-- <h5 class="card-title sPuserId"><%=ratinglist[i].User_nickName%></h5> -->
-                                            <p class="card-text sPstar"><img src="../static/img/<%=ratinglist[i].star%>.PNG" alt=""id="starPeopleStars"></p>
+                                            <p class="card-text sPstar"><img src="../static/img/<%=ratinglist[i].star%>.png" alt=""id="starPeopleStars"></p>
                                           </div>
                                         </div>
                                       </div>

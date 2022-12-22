@@ -12,8 +12,13 @@ function home() {
  console.log(sessionStorage.getItem("shopAddress"));
  address.value = sessionStorage.getItem("shopAddress");
  /* 가게 등록하기 버튼 누르면 */
- function editStore() {
+ function registerStore() {
      let form = document.getElementById("form_info");
+
+     if ( !form.checkValidity() ) {
+        form.reportValidity();
+        return false;
+     }
      let menu = [];
      console.log(form.operatingTime.value)
      let menuInput = document.querySelectorAll('.menu input');
@@ -41,7 +46,7 @@ function home() {
          }
      }).then(function(data){{
          console.log(data)
-         alert("가게 정보가 등록되었습니다:노란색_하트:")
+         alert("가게 정보가 등록되었습니다💛")
          window.location.href = `/storeDetail?store=${data.data}`
      }})
  }

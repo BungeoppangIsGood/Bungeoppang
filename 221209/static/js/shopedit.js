@@ -13,27 +13,37 @@ console.log(response.data);
 /* 가게 수정하기 버튼으르 누르면 */
 function editStore() {
     let form = document.getElementById("form_info");
+    let menu = [];
+     console.log(form.operatingTime.value)
+     let menuInput = document.querySelectorAll('.menu input');
+     menuInput.forEach((el,i) => {
+         console.log(el.value)
+         if(el.value){
+             menu[i] = {
+                 menuName: i==0? '팥' : '슈크림',
+                 price: menuInput[i].value
+             }
+         }
+     })
+     console.log(menu)
     axios({
         method: "patch",
         url: "/store/Edit",
         data: {
             storeName: form.store.value,
             address: form.address.value,
-            menu: {
-                팥: form.price1.value,
-                슈크림: form.price1.value,
-            },
+            menu,
             operatingTime: form.operatingTime.value,
             lat: form.lat.value,
             lon: form.lon.value
         }
     }).then(function(data){{
         alert("가게 정보가 수정되었습니다💛")
-        window.location.href = "/storeDetail"
+        window.location.href = `/storeDetail?store=${data.data}`
     }})
 }
 function home() {
-    window.location.href = "./map"
+    window.location.href = "/"
 }
 /* 경도 및 위도 값 */
 const lat2 = document.querySelector(".form-control2");

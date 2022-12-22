@@ -75,7 +75,6 @@ function regiStar() {
 
         stars.src = `../static/img/${Math.round(req.data.ratingAVG)}.png`
         document.getElementById("aa").innerText = req.data.ratingAVG
-        
     })
     
 }
