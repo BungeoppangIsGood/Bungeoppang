@@ -13,6 +13,11 @@ console.log(response.data);
 /* 가게 수정하기 버튼으르 누르면 */
 function editStore() {
     let form = document.getElementById("form_info");
+    if ( !form.checkValidity() ) {
+        form.reportValidity();
+        return false;
+     }
+
     let menu = [];
      console.log(form.operatingTime.value)
      let menuInput = document.querySelectorAll('.menu input');
