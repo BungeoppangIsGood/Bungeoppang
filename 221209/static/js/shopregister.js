@@ -34,7 +34,10 @@ function home() {
              storeName: form.store.value,
              address: form.address.value,
              menu,
-             operatingTime: form.operatingTime.value
+             operatingTime: form.operatingTime.value,
+             lat: form.lat.value,
+             lon: form.lon.value
+
          }
      }).then(function(data){{
          console.log(data)

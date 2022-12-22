@@ -54,12 +54,10 @@
                     <li class="list-group-item" id="info"><img src="../static/img/IMG_0652.PNG" class="fish" alt="...">메뉴<br>
                         <% if(menu1) { %>
                             <ol style="float: right;" id="infoDetail"><%=menu1.menuName%> <%=menu1.price%></ol>
-                        <% } %>
-                        <% if(menu1 && menu2) { %>
+                        <% } else if(menu1 && menu2) { %>
                             <ol style="float: right;" id="infoDetail"><%=menu1.menuName%> <%=menu1.price%></ol>
                             <br><ol style="float: right;" id="infoDetail"><%=menu2.menuName%> <%=menu2.price%></ol>
-                        <% } %>
-                        <% if(menu2) { %>
+                        <% } %> else if(menu2) { %>
                             <ol style="float: right;" id="infoDetail"><%=menu2.menuName%> <%=menu2.price%></ol>
                         <% } %>
                         
