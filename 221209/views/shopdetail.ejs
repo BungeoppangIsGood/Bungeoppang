@@ -16,7 +16,7 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <link rel="stylesheet" href="../static/css/shopdetail.css" />
     <script>
-        console.log('<%=ratinglist%>');
+        console.log('<%=ratingAVG%>');
     </script>
     </head>
     <body>
@@ -30,7 +30,7 @@
                 </div>
                     <ul class="list-group list-group-flush">
                     <li class="list-group-item" id="info" onclick="stars();"><img src="../static/img/IMG_0652.PNG" class="fish" alt="...">평점
-                        <ol style="float: right;" id = "average" ><img src="../static/img/<%=Math.round(req.data.ratingAVG)%>.PNG" alt=""class="stars" id="stars"><span id="aa"><%=data.ratingAVG%></span></ol>
+                        <ol style="float: right;" id = "average" ><img src="../static/img/<%=Math.round(ratingAVG)%>.png" alt=""class="stars" id="stars"><span id="aa"><%=ratingAVG%></span></ol>
                     </li>
                     <div id="starPeople">
                         <li class="list-group-item" id="info"><img src="../static/img/IMG_0652.PNG" class="fish" alt="...">별점을 남긴 사람들
@@ -41,8 +41,7 @@
                                         <div class="card">
                                           <div class="card-body">
                                             <h5 class="card-title sPid"><%=ratinglist[i].User_nickName%></h5>
-                                            <!-- <h5 class="card-title sPuserId"><%=ratinglist[i].User_nickName%></h5> -->
-                                            <p class="card-text sPstar"><img src="../static/img/<%=ratinglist[i].star%>.PNG" alt=""id="starPeopleStars"></p>
+                                            <p class="card-text sPstar"><img src="../static/img/<%=ratinglist[i].star%>.png" alt=""id="starPeopleStars"></p>
                                           </div>
                                         </div>
                                       </div>
@@ -52,13 +51,11 @@
                     </div>
                     
                     <li class="list-group-item" id="info"><img src="../static/img/IMG_0652.PNG" class="fish" alt="...">메뉴<br>
-                        <% if(menu1) { %>
-                            <ol style="float: right;" id="infoDetail"><%=menu1.menuName%> <%=menu1.price%></ol>
-                        <% } else if(menu1 && menu2) { %>
+                        <% if(menu2.menuName) { %>
                             <ol style="float: right;" id="infoDetail"><%=menu1.menuName%> <%=menu1.price%></ol>
                             <br><ol style="float: right;" id="infoDetail"><%=menu2.menuName%> <%=menu2.price%></ol>
-                        <% } %> else if(menu2) { %>
-                            <ol style="float: right;" id="infoDetail"><%=menu2.menuName%> <%=menu2.price%></ol>
+                        <% } else { %>
+                            <ol style="float: right;" id="infoDetail"><%=menu1.menuName%> <%=menu1.price%></ol>
                         <% } %>
                         
                     </li>
@@ -68,8 +65,8 @@
                     </ul>
                     <div class="card-body button">
                         <button type="button" class="btn" id="recordStar">별점 남기기</button>
-                        <img src="../static/img/home.PNG" class="card-img-top animate__animated animate__bounceIn" id="home" onclick="home();"><!-- 홈화면 이동 -->
-                        <button href="./shopEdit.ejs" type="button" class="btn btn-warning" style="float: right; font-size: 2.8rem;">가게 수정하기</button>
+                        <img src="../static/img/home.png" class="card-img-top animate__animated animate__bounceIn" id="home" onclick="home();"><!-- 홈화면 이동 -->
+                        <button type="button" class="btn btn-warning" style="float: right; font-size: 2.8rem;"><a href="/storeEdit?store=<%=data.storeName%>">가게 수정하기</a></button>
                     </div>
             </div>
         </div>
