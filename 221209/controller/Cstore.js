@@ -44,9 +44,8 @@ exports.register_rating = async (req, res) => {
 }
 
 exports.register = async (req, res) => {
-  const {storeName, address, menu, operatingTime,} = req.body;
-  const latitude = 123;
-  const longitude = 123;
+  const {storeName, address, menu, operatingTime, lat, lon} = req.body;
+  console.log(req.body)
   const userId = await User.findOne({
     attributes:['id'],
     where: {
@@ -58,57 +57,65 @@ exports.register = async (req, res) => {
     storeName,
     address,
     operatingTime,
-    latitude,
-    longitude,
+    latitude : lat,
+    longitude : lon,
     userId : userId.id
   })
 
   menu.forEach((el) => {
     el.Store_id = store.dataValues.id
   }) 
-  console.log(store)
+  //console.log(store)
   const result2 = await Menu.bulkCreate(menu)
   res.send(store.storeName);
 }
 
 exports.Edit = async (req, res) => {
-  console.log(req.body)
-  const {store, address, operatingTime} = req.body;
+  //console.log(req.body)
+  const {beforeStoreName, storeName, address, menu, operatingTime, lat, lon} = req.body;
   //위도, 경도등도 넣어줘야한다.
-
-  const store1 = await Store.update({
-    storeName:store,
-    address,
-    operatingTime,
-   
-  },{
-    where: {
-      storeName: store
-    }
-  })
-
+  console.log(req.body)
 
   const storeId = await Store.findOne({
     attributes: ['id'],
     where: {
-      storeName: store
+      storeName: beforeStoreName
     }
   })//메뉴를 저장하려면 storeid를 알아야한다.
+  console.log(storeId)
 
-  const menuId = await Menu.findAll({
-    attributes: ['id'],
+
+  const store1 = await Store.update({
+    storeName,
+    address,
+    operatingTime,
+    latitude : lat,
+    longitude : lon,
+  },{
+    where: {
+      storeName: beforeStoreName
+    }
+  })
+
+
+  
+  
+  const menu1 = await Menu.findAll({
     where:{
       store_id : storeId.id 
     }
   })//메뉴를 한 번에 수정하려면 menu의 id값들을 primary값을 알아야한다.
+  //console.log(menu1)
 
   menu.forEach((el, i) => {
-    el.id = menuId[i].id
-  }) 
+    el.id = menu1[i]?.id || menu1[i-1].id + 1 
+    // el.Store_id = menu1[i]?.Store_id || menu1[i-1].Store_id
+  }) //메뉴를 만들어준다. 
+  console.log(menu)
 
-  const update= await Menu.bulkCreate(menu, {updateOnDuplicate: ['id']})
-
-  res.send(store);
+  const update = await Menu.bulkCreate(menu, {updateOnDuplicate: ["id"]})
+  console.log(update)
+  res.send(storeName);
 }
 
 //가게 페이지 render시에 필요

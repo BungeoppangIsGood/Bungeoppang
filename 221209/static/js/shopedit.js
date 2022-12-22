@@ -10,11 +10,18 @@ const response = await axios({
 console.log(response.data);
 } 
 
+
 /* 가게 수정하기 버튼으르 누르면 */
-function editStore() {
+function editStore(a) {
+    console.log(a)
     let form = document.getElementById("form_info");
+    if ( !form.checkValidity() ) {
+        form.reportValidity();
+        return false;
+     }
+
     let menu = [];
-     console.log(form.operatingTime.value)
+
      let menuInput = document.querySelectorAll('.menu input');
      menuInput.forEach((el,i) => {
          console.log(el.value)
@@ -25,11 +32,12 @@ function editStore() {
              }
          }
      })
-     console.log(menu)
+     console.log(form.lat.value)
     axios({
         method: "patch",
         url: "/store/Edit",
         data: {
+            beforeStoreName: a,
             storeName: form.store.value,
             address: form.address.value,
             menu,
@@ -39,6 +47,7 @@ function editStore() {
         }
     }).then(function(data){{
         alert("가게 정보가 수정되었습니다💛")
+        console.log(data)
         window.location.href = `/storeDetail?store=${data.data}`
     }})
 }
@@ -94,7 +103,9 @@ navigator.geolocation.getCurrentPosition(
     }
 );
 }
+let count = 1
 map.addEventListener("moveend", async () => {
+
 const center = view.getCenter();
 const [lon, lat] = ol.proj.transform(center, DST, SRC);
 const response = await axios({
@@ -105,7 +116,13 @@ const response = await axios({
     lon,
     },
 });
+
 const address = document.querySelector(".inputMap");
+document.querySelector('.lat').value = lat
+document.querySelector('.lon').value = lon
 console.log(response.data[0].text);
-address.value = response.data[0].text;
+if(count != 1) address.value = response.data[0].text;
+
+
+count++;
 });

@@ -18,7 +18,7 @@
 
 |이채연(FE)|금서하(FE)|박도희(FE)|한승보(BE)| 
 |:---:|:---:|:---:|:---:|
-|<img src="https://avatars.githubusercontent.com/u/107829964?v=4" width="150" height="150">|<img src="https://avatars.githubusercontent.com/u/88123669?v=4" width="150" height="150">|<img src="https://avatars.githubusercontent.com/u/95624219?v=4" width="150" height="150">|<img src="https://avatars.githubusercontent.com/u/97070138?v=4" width="150" height="150">| 
+|<img src="https://avatars.githubusercontent.com/u/107829964?v=4" width="100">|<img src="https://avatars.githubusercontent.com/u/88123669?v=4" width="100" >|<img src="https://avatars.githubusercontent.com/u/95624219?v=4" width="100" >|<img src="https://avatars.githubusercontent.com/u/97070138?v=4" width="100">| 
 |<a href="https://github.com/leechaeyeon321"><img src="https://img.shields.io/badge/GitHub-181717?style=plastic&logo=GitHub&logoColor=white"/></a> |<a href="https://github.com/seohags"><img src="https://img.shields.io/badge/GitHub-181717?style=plastic&logo=GitHub&logoColor=white"/></a>|<a href="https://github.com/dolahee"><img src="https://img.shields.io/badge/GitHub-181717?style=plastic&logo=GitHub&logoColor=white"/></a>|<a href="https://github.com/boseungdl"><img src="https://img.shields.io/badge/GitHub-181717?style=plastic&logo=GitHub&logoColor=white"/></a>| 
 
 <h1> ✍️ 기술 스택 </h1>

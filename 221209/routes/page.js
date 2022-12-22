@@ -31,44 +31,54 @@ router.get("/storeMap", (req, res) => {
   res.render("shopmap");
 });
 
-router.get("/storeDetail", async (req, res) => {
-  const store = await Store.findOne({
-    where: {
-      storeName: req.query.store,
-    },
-    include: [
-      {
-        model: Menu,
-        attributes: ["menuName", "price"],
+router.get("/storeDetail", async (req, res, next) => {
+  try {
+    const store = await Store.findOne({
+      where: {
+        storeName: req.query.store,
       },
-      {
-        model: Review,
-        attributes: ["User_nickName", "star"],
+      include: [
+        {
+          model: Menu,
+          attributes: ["menuName", "price"],
+        },
+        {
+          model: Review,
+          attributes: ["User_nickName", "star"],
+        },
+      ],
+    });
+    //console.log(store);
+  
+    const avg = await Review.findAll({
+      attributes: [[Sequelize.fn("avg", Sequelize.col("star")), "rating"]],
+      where: {
+        store_id: store.id,
       },
-    ],
-  });
-  console.log(store);
+    });
+    console.log(avg[0].dataValues.rating)
 
-  const avg = await Review.findAll({
-    attributes: [[Sequelize.fn("avg", Sequelize.col("star")), "rating"]],
-    where: {
-      store_id: store.id,
-    },
-  });
+    
+    const data = {
+      data: store.dataValues,
+      menu1: store.menus[0]?.dataValues || null,
+      menu2: store.menus[1]?.dataValues || null,
+      ratingAVG: Number(avg[0].dataValues.rating).toFixed(1),
+      ratinglist: store.reviews || 0,
+    };
 
-  const data = {
-    data: store.dataValues,
-    menu1: store.menus[0]?.dataValues || null,
-    menu2: store.menus[1]?.dataValues || null,
-    avgRating: avg[0].dataValues.rating,
-    ratinglist: store.reviews || 0,
-  };
+    res.render("shopdetail", data); 
+  } catch (err) {
+    console.error(err);
+    next(err)
+  }
+  
 
-  res.render("shopdetail", data); 
 });
 
-router.get("/storeEdit", isLoggedIn, async (req, res) => {
+router.get("/storeEdit", async (req, res) => {
   console.log(req.query); //다양한 url모듈 써보기
+
   const result = await Store.findOne({
     where: { storeName: req.query.store },
     include: {
