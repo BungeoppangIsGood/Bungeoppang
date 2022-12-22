@@ -15,8 +15,12 @@ router.post('/signup', async (req, res, next) => { // 회원가입
 
   try {
     const exUser = await User.findOne({where: {userId: id}});
+    const exnickName = await User.findOne({where: {nickName: nickName}});
     if(exUser) {
       return res.send('존재하는 ID입니다.');
+    }
+    if(exnickName) {
+      return res.send('존재하는 닉네임입니다.');
     }
     const hash = await bcrypt.hash(pw, 12);
     await User.create({
@@ -62,7 +66,7 @@ router.get('/kakao', passport.authenticate('kakao'));
 router.get('/kakao/callback', passport.authenticate('kakao', { //카카오 로그인 성공시에 카카오에서 요청을 해준다.
   failureRedirect: '/signin',
 }), (req, res) => {
-  res.redirect('/');
+  res.redirect('/map');
 })
 
 

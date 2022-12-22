@@ -19,6 +19,9 @@ router.get("/main", (req, res) => {
   res.render("main");
 });
 router.get("/", (req, res) => {
+  res.render("main");
+});
+router.get("/map", (req, res) => {
   res.render("map");
 });
 router.get("/storeRegister", isLoggedIn, (req, res) => {
