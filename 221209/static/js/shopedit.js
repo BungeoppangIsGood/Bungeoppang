@@ -23,7 +23,9 @@ function editStore() {
                 팥: form.price1.value,
                 슈크림: form.price1.value,
             },
-            operatingTime: form.operatingTime.value
+            operatingTime: form.operatingTime.value,
+            lat: form.lat.value,
+            lon: form.lon.value
         }
     }).then(function(data){{
         alert("가게 정보가 수정되었습니다💛")

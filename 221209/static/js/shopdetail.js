@@ -61,7 +61,7 @@ function regiStar() {
                             <div class="card">
                               <div class="card-body">
                                 <h5 class="card-title sPid">${req.data.nickName}</h5>
-                            s   <p class="card-text sPstar"><img src="../static/img/${req.data.rating}.png" alt=""id="starPeopleStars"></p>
+                               <p class="card-text sPstar"><img src="../static/img/${req.data.rating}.png" alt=""id="starPeopleStars"></p>
                               </div>
                             </div>
                           </div>`
