@@ -44,9 +44,8 @@ exports.register_rating = async (req, res) => {
 }
 
 exports.register = async (req, res) => {
-  const {storeName, address, menu, operatingTime,} = req.body;
-  const latitude = 123;
-  const longitude = 123;
+  const {storeName, address, menu, operatingTime, lat, lon} = req.body;
+
   const userId = await User.findOne({
     attributes:['id'],
     where: {
@@ -58,8 +57,8 @@ exports.register = async (req, res) => {
     storeName,
     address,
     operatingTime,
-    latitude,
-    longitude,
+    latitude : lat,
+    longitude : lon,
     userId : userId.id
   })
 
@@ -73,17 +72,18 @@ exports.register = async (req, res) => {
 
 exports.Edit = async (req, res) => {
   console.log(req.body)
-  const {store, address, operatingTime} = req.body;
+  const {storeName, address, menu, operatingTime, lat, lon} = req.body;
   //위도, 경도등도 넣어줘야한다.
 
   const store1 = await Store.update({
-    storeName:store,
+    storeName,
     address,
     operatingTime,
-   
+    latitude : lat,
+    longitude : lon,
   },{
     where: {
-      storeName: store
+      storeName: storeName
     }
   })
 
@@ -91,7 +91,7 @@ exports.Edit = async (req, res) => {
   const storeId = await Store.findOne({
     attributes: ['id'],
     where: {
-      storeName: store
+      storeName: storeName
     }
   })//메뉴를 저장하려면 storeid를 알아야한다.
 
@@ -101,6 +101,8 @@ exports.Edit = async (req, res) => {
       store_id : storeId.id 
     }
   })//메뉴를 한 번에 수정하려면 menu의 id값들을 primary값을 알아야한다.
+
+console.log(menuId)
 
   menu.forEach((el, i) => {
     el.id = menuId[i].id
