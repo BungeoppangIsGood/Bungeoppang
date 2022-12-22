@@ -78,6 +78,7 @@ router.get("/storeDetail", async (req, res, next) => {
 
 router.get("/storeEdit", async (req, res) => {
   console.log(req.query); //다양한 url모듈 써보기
+  
   const result = await Store.findOne({
     where: { storeName: req.query.store },
     include: {
