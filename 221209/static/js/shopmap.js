@@ -61,6 +61,7 @@ map.addEventListener("moveend", async () => {
   address.value = response.data[0].text;
   lat2 = response.config.params.lat;
   lon2 = response.config.params.lon;
+  console.log(lat2, lon2)
 });
 
 function goRegister() {

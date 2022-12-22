@@ -33,6 +33,9 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="/static/css/shopedit.css" />
   </head>
+  <script>
+    console.log('<%=data.address%>')
+  </script>
   <body>
     <div class="wrapDiv">
       <div class="scene flex detail jm-font">
@@ -75,11 +78,13 @@
                 "
                 class="inputMap form-control"
                 type="text"
-                value=""
+                value="<%=data.address%>"
+                name="address"
                 aria-label="Disabled input example"
                 disabled
                 readonly
               />
+              
             </div>
             <div class="latLon">
               <div>
@@ -155,6 +160,8 @@
                 required
               />
             </div>
+            <input type="hidden" name="lat" class="lat">
+            <input type="hidden" name="lon" class="lon">
             <br />
             <div class="buttondiv">
               <span
@@ -168,7 +175,7 @@
               <button
                 type="button"
                 class="btn btn-warning edit"
-                onclick="editStore();"
+                onclick="editStore('<%=data.storeName%>');"
               >
                 가게 수정하기
               </button>

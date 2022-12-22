@@ -14,7 +14,8 @@ function home() {
  /* 가게 등록하기 버튼 누르면 */
  function registerStore() {
      let form = document.getElementById("form_info");
-
+     lat2.value = sessionStorage.getItem("shopLat")
+     lon2.value = sessionStorage.getItem("shopLon")
      if ( !form.checkValidity() ) {
         form.reportValidity();
         return false;
@@ -95,6 +96,9 @@ function home() {
  map.addEventListener("moveend", async () => {
  const center = view.getCenter();
  const [lon, lat] = ol.proj.transform(center, DST, SRC);
+ console.log(lon, lat)
+ lat2.value = lat
+ lon2.value = lon
  const response = await axios({
      method: "GET",
      url: "http://knsan189.iptime.org:8080/api/map/address",
