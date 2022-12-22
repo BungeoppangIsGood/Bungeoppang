@@ -73,7 +73,7 @@ function regiStar() {
         req.data.ratingAVG = Number(req.data.ratingAVG)
         console.log(req.data.ratingAVG, typeof req.data.ratingAVG)
 
-        stars.src = `../static/img/${Math.round(req.data.ratingAVG)}.png`
+        stars.src = `static/img/${Math.round(req.data.ratingAVG)}.png`
         document.getElementById("aa").innerText = req.data.ratingAVG
     })
     
@@ -81,8 +81,9 @@ function regiStar() {
 function home() {
     window.location.href = "/map"
 }
-function edit(){
-    window.location.href = `/storeEdit?store=${data.storeName}`
+function edit(a){
+    console.log(a)
+    window.location.href = `/storeEdit?store=${a}`
 }
 const address = document.querySelector(".form-control");
  const lat2 = document.querySelector(".form-control2");
