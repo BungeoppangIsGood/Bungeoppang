@@ -23,17 +23,17 @@
         <div class="wrap">
             <div class="scene flex detail jm-font">
                 <div class="card" style="width: 100%">
-                    <img src="../static/img/IMG_0652.png" class="card-img-top animate__animated animate__tada"alt="..."><!-- 아이콘 부분 -->
+                    <img src="../static/img/IMG_0652.PNG" class="card-img-top animate__animated animate__tada"alt="..."><!-- 아이콘 부분 -->
                     <div class="card-body">
                     <h5 class="card-title jm-font" name="storeName" id="storeName"><%=data.storeName%></h5>
                     <p class="card-text"></p>
                 </div>
                     <ul class="list-group list-group-flush">
-                    <li class="list-group-item" id="info" onclick="stars();"><img src="../static/img/IMG_0652.png" class="fish" alt="...">평점
-                        <ol style="float: right;" id = "average" ><img src="../static/img/<%=Math.round(req.data.ratingAVG)%>.png" alt=""class="stars" id="stars"><span id="aa"><%=data.ratingAVG%></span></ol>
+                    <li class="list-group-item" id="info" onclick="stars();"><img src="../static/img/IMG_0652.PNG" class="fish" alt="...">평점
+                        <ol style="float: right;" id = "average" ><img src="../static/img/<%=Math.round(req.data.ratingAVG)%>.PNG" alt=""class="stars" id="stars"><span id="aa"><%=data.ratingAVG%></span></ol>
                     </li>
                     <div id="starPeople">
-                        <li class="list-group-item" id="info"><img src="../static/img/IMG_0652.png" class="fish" alt="...">별점을 남긴 사람들
+                        <li class="list-group-item" id="info"><img src="../static/img/IMG_0652.PNG" class="fish" alt="...">별점을 남긴 사람들
                             <button type="button" class="btn-close" aria-label="Close" onclick="starPeopleClose();"style="float: right; font-size: 2.8rem;"></button><br><br>
                             <div class="row">
                                 <%for(var i = 0; i<ratinglist.length; i++) {%>
@@ -42,7 +42,7 @@
                                           <div class="card-body">
                                             <h5 class="card-title sPid"><%=ratinglist[i].User_nickName%></h5>
                                             <!-- <h5 class="card-title sPuserId"><%=ratinglist[i].User_nickName%></h5> -->
-                                            <p class="card-text sPstar"><img src="../static/img/<%=ratinglist[i].star%>.png" alt=""id="starPeopleStars"></p>
+                                            <p class="card-text sPstar"><img src="../static/img/<%=ratinglist[i].star%>.PNG" alt=""id="starPeopleStars"></p>
                                           </div>
                                         </div>
                                       </div>
@@ -51,7 +51,7 @@
                         </li>
                     </div>
                     
-                    <li class="list-group-item" id="info"><img src="../static/img/IMG_0652.png" class="fish" alt="...">메뉴<br>
+                    <li class="list-group-item" id="info"><img src="../static/img/IMG_0652.PNG" class="fish" alt="...">메뉴<br>
                         <% if(menu1) { %>
                             <ol style="float: right;" id="infoDetail"><%=menu1.menuName%> <%=menu1.price%></ol>
                         <% } else if(menu1 && menu2) { %>
@@ -62,19 +62,19 @@
                         <% } %>
                         
                     </li>
-                    <li class="list-group-item" id="info"><img src="../static/img/IMG_0652.png" class="fish" alt="...">이용 요일
+                    <li class="list-group-item" id="info"><img src="../static/img/IMG_0652.PNG" class="fish" alt="...">이용 요일
                         <ol style="float: right;" id="infoDetail">Open: <%=data.operatingTime%></ol>
                     </li>
                     </ul>
                     <div class="card-body button">
                         <button type="button" class="btn" id="recordStar">별점 남기기</button>
-                        <img src="../static/img/home.png" class="card-img-top animate__animated animate__bounceIn" id="home" onclick="home();"><!-- 홈화면 이동 -->
+                        <img src="../static/img/home.PNG" class="card-img-top animate__animated animate__bounceIn" id="home" onclick="home();"><!-- 홈화면 이동 -->
                         <button href="./shopEdit.ejs" type="button" class="btn btn-warning" style="float: right; font-size: 2.8rem;">가게 수정하기</button>
                     </div>
             </div>
         </div>
         <div class="card text-dark bg-light mb-3 regiSTar jm-font" id="div2">
-            <div class="card-header titleStar"><img src="../static/img/IMG_0652.png" class="fish" alt="...">별점 남기기
+            <div class="card-header titleStar"><img src="../static/img/IMG_0652.PNG" class="fish" alt="...">별점 남기기
                 <button type="button" class="btn-close" aria-label="Close" onclick="regiStarClose();"style="float: right; font-size: 2.8rem;"></button></div>
                 <div class="card-body contentStar">
                     <form id="form_star">
