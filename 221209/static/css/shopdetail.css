@@ -47,6 +47,7 @@ body {
 }
 .dororo{
    width: 100%;
+   margin-left: 30px;
    position: relative;
    align-items: center;
    justify-content: center;
