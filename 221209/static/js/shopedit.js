@@ -1,16 +1,3 @@
-const searchBox = document.getElementById("searchBox");
-async function search() {
-const response = await axios({
-    method: "GET",
-    url: "http://knsan189.iptime.org:8080/api/map/search",
-    params: {
-    keyword: searchBox.keyword.value,
-    },
-});
-console.log(response.data);
-} 
-
-
 /* 가게 수정하기 버튼으르 누르면 */
 function editStore(a) {
     console.log(a)
@@ -22,17 +9,17 @@ function editStore(a) {
 
     let menu = [];
 
-     let menuInput = document.querySelectorAll('.menu input');
-     menuInput.forEach((el,i) => {
-         console.log(el.value)
-         if(el.value){
-             menu[i] = {
-                 menuName: i==0? '팥' : '슈크림',
-                 price: menuInput[i].value
-             }
-         }
-     })
-     console.log(form.lat.value)
+    let menuInput = document.querySelectorAll('.menu input');
+    menuInput.forEach((el,i) => {
+        console.log(el.value)
+        if(el.value){
+            menu[i] = {
+                menuName: i==0? '팥' : '슈크림',
+                price: menuInput[i].value
+            }
+        }
+    })
+    console.log(form.lat.value)
     axios({
         method: "patch",
         url: "/store/Edit",
@@ -52,8 +39,9 @@ function editStore(a) {
     }})
 }
 function home() {
-    window.location.href = "/"
+    window.location.href = "/map"
 }
+
 /* 경도 및 위도 값 */
 const lat2 = document.querySelector(".form-control2");
 const lon2 = document.querySelector(".form-control3");
@@ -81,28 +69,6 @@ view,
 controls: [],
 });
 
-function clickCurrentLocation() {
-navigator.geolocation.getCurrentPosition(
-    (position) => {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-    const center = ol.proj.fromLonLat([lon, lat]);
-    view.animate({
-        center,
-        duration: 2000,
-        zoom: 16,
-    });
-    },
-    (error) => {
-    alert("위치 정보를 찾을 수 없습니다.");
-    },
-    {
-    enableHighAccuracy: true,
-    maximumAge: 0,
-    timeout: 5000,
-    }
-);
-}
 let count = 1
 map.addEventListener("moveend", async () => {
 
@@ -123,6 +89,7 @@ document.querySelector('.lon').value = lon
 console.log(response.data[0].text);
 if(count != 1) address.value = response.data[0].text;
 
-
 count++;
 });
+
+

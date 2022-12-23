@@ -42,7 +42,8 @@ function regiStar() {
     const storeName = document.querySelector("#storeName").innerText;
     let data = {
         rating: form.rating.value,
-        store: storeName
+        store: storeName,
+        
     }
     axios({
         method: 'post',
