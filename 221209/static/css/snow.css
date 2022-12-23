@@ -1,11 +1,14 @@
 .snow{
+    width: 10px;
+    height: 10px;
+    background: black;
+    border-radius: 50%;
     animation: snow 10s linear infinite;
 }
 
  .snow:nth-of-type(2n) {
     width: 7px;
     height: 7px;
-
     animation-duration: 7s;
     animation-delay: 1s;
 }
