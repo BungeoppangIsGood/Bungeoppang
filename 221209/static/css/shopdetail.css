@@ -54,6 +54,9 @@ body {
 .detail {
    display: block;
 }
+.list-group-item {
+   width: 450px;
+}
 /* 평균 */
 .stars {
    position: absolute;
@@ -136,5 +139,5 @@ color:#fc0;
 #home {
    width: 53px; 
    position: absolute; 
-   left: 42%; 
+   left: 42.5%; 
 }
