@@ -6,11 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>로그인</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"
-    ></script>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
@@ -34,10 +30,9 @@
     />
     <link rel="stylesheet" href="/static/css/user.css" />
 
-    <style></style>
     <script>
       function login() {
-        var form = document.getElementById("form_login");
+        const form = document.getElementById("form_login");
         if (!form.checkValidity()) {
           form.reportValidity();
           console.log("reportValidity");
@@ -59,7 +54,7 @@
           } else {
             document.getElementById("result").innerHTML =
               "아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요";
-            alert("아이디 비밀번호를 확인해주세요");
+            alert("아이디 비밀번호를 확인해주세요.");
             form.reset();
           }
         });
