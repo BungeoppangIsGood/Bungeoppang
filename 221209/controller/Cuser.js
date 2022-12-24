@@ -50,11 +50,11 @@ exports.profileImg_update = (req, res) => {
 }
 
 exports.user_delete = async (req, res) => {
-  console.log(res.body);
-  const result = await User.delete({
-    where: req.body.id
+  console.log(req.user);
+  const result = await User.destroy({
+    where: {userId: req.user}
   })
-  res.send(result);
+  res.send('회원탈퇴성공');
 }
 
 

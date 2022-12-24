@@ -35,7 +35,7 @@ router.get("/storeDetail", async (req, res, next) => {
   try {
     const store = await Store.findOne({
       where: {
-        storeName: req.query.store,
+        id: req.query.store,
       },
       include: [
         {
@@ -66,6 +66,7 @@ router.get("/storeDetail", async (req, res, next) => {
       ratingAVG: Number(avg[0].dataValues.rating).toFixed(1),
       ratinglist: store.reviews || 0,
     };
+    console.log(data)
 
     res.render("shopdetail", data); 
   } catch (err) {
@@ -80,13 +81,12 @@ router.get("/storeEdit", async (req, res) => {
   console.log(req.query); //다양한 url모듈 써보기
 
   const result = await Store.findOne({
-    where: { storeName: req.query.store },
+    where: { id: req.query.store },
     include: {
       model: Menu,
       attributes: ["menuName", "price"],
     },
   });
-  console.log(result.dataValues);
   console.log(result.menus[0].dataValues);
   console.log(result.menus[1].dataValues);
   const data = {

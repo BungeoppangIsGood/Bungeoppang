@@ -43,31 +43,36 @@ exports.register_rating = async (req, res) => {
   res.send(data)
 }
 
-exports.register = async (req, res) => {
-  const {storeName, address, menu, operatingTime, lat, lon} = req.body;
-  console.log(req.body)
-  const userId = await User.findOne({
-    attributes:['id'],
-    where: {
-      userId : req.user,
-    }
-  })
+exports.register = async (req, res, next) => {
+  try {
+    const {storeName, address, menu, operatingTime, lat, lon} = req.body;
+    console.log(req.body)
+    const userId = await User.findOne({
+      attributes:['id'],
+      where: {
+        userId : req.user,
+      }
+    })
 
-  const store = await Store.create({
-    storeName,
-    address,
-    operatingTime,
-    latitude : lat,
-    longitude : lon,
-    userId : userId.id
-  })
+    const store = await Store.create({
+      storeName,
+      address,
+      operatingTime,
+      latitude : lat,
+      longitude : lon,
+      userId : userId.id
+    })
 
-  menu.forEach((el) => {
-    el.Store_id = store.dataValues.id
-  }) 
-  //console.log(store)
-  const result2 = await Menu.bulkCreate(menu)
-  res.send(store.storeName);
+    menu.forEach((el) => {
+      el.Store_id = store.dataValues.id
+    }) 
+    //console.log(store)
+    const result2 = await Menu.bulkCreate(menu)
+    res.send(store.storeName);
+  } catch (err) {
+    console.error(err);
+    next(err)
+  }
 }
 
 exports.Edit = async (req, res) => {
@@ -105,15 +110,21 @@ exports.Edit = async (req, res) => {
       store_id : storeId.id 
     }
   })//메뉴를 한 번에 수정하려면 menu의 id값들을 primary값을 알아야한다.
-  //console.log(menu1)
+  console.log(menu1)
 
   menu.forEach((el, i) => {
-    el.id = menu1[i]?.id || menu1[i-1].id + 1 
-    // el.Store_id = menu1[i]?.Store_id || menu1[i-1].Store_id
+    el.id = menu1[i]?.id || menu1[i-1].id + 1 //한개에서 2개로 추가됐을 때 까지 생각
+    el.Store_id = menu1[i]?.Store_id || menu1[i-1].Store_id
   }) //메뉴를 만들어준다. 
   console.log(menu)
+  
+  menu1.forEach( async (el, i) => {
+    if(menu[0].menuName != el.menuName){
+      const deleteMenu = await Menu.destroy({where: {id : el.id}})
+    }
+  })
 
-  const update = await Menu.bulkCreate(menu, {updateOnDuplicate: ["id"]})
+  const update = await Menu.bulkCreate(menu, {updateOnDuplicate: ["price"]})
   console.log(update)
   res.send(storeName);
 }

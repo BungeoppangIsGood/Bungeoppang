@@ -13,7 +13,6 @@ class Store extends Sequelize.Model {
             address: {
                type: Sequelize.STRING(100),
                allowNull: false,
-               unique: true,
             },
             operatingTime: {
                type: Sequelize.STRING(7),

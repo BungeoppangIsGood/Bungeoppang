@@ -6,8 +6,8 @@ const passport = require('passport');
 const router = express.Router();
 
 router.post('/a', (req, res) => {
-  console.log(req.body)
-  res.send(true)
+  console.log(req.body);
+  res.send(true);
 })
 
 router.post('/signup', async (req, res, next) => { // 회원가입
@@ -89,7 +89,7 @@ router.get('/logout', (req, res) => {
   req.session.destroy(
     function(err){
       if(err) throw err;
-      res.redirect('/login');
+      res.redirect('/main')
     }
   ); //세션자체파괴?
 })
