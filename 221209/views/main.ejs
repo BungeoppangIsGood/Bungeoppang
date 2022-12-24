@@ -33,57 +33,87 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <link rel="stylesheet" href="/static/css/user.css" />
-    <link rel="stylesheet" href="/static/css/snow.css" />
     <link rel="icon" href="/static/img/mapIcon.png" />
   </head>
   <body>
-    <script src="/static/js/snow.js"></script>
-    <div class="scene flex">
-      <section class="card">
-        <h1 class="card__heading">
-          <img
-            src="/static/img/fish.PNG"
-            class="card-img-top animate__animated animate__bounce"
-            alt="..."
-          />
-          <span>붕어빵</span>
-        </h1>
-        <div id="mt-3" class="img_btns">
-          <form action="/auth/kakao" method="get">
-            <button class="card__button1">
-              <img
-                src="/static/img/kakao.png"
-                width="30px;"
-                height="30px;"
-                class="kakao"
-              />
-              <span>카카오로 로그인</span>
-            </button>
-          </form>
-          <form action="/auth/facebook" method="get">
-            <button class="card__button2">
-              <img
-                src="/static/img/facebook.png"
-                width="30px;"
-                height="30px;"
-              />
-              <span> 페이스북으로 로그인</span>
-            </button>
-          </form>
-          <a class="" href="/signin">
-            <button class="card__button" window.open="/user/signin">
-              <img src="/static/img/mapIcon.png" width="40px;" height="30px;" />
-              로그인
-            </button>
-          </a>
-          <a class="" href="/signup">
-            <button class="card__button" window.open="/user/signup">
-              <img src="/static/img/mapIcon.png" width="40px;" height="30px;" />
-              회원가입
-            </button>
-          </a>
-        </div>
-      </section>
-    </div>
+    <main>
+      <div class="scene flex">
+        <section class="card">
+          <h1 class="card__heading">
+            <img
+              src="/static/img/fish.PNG"
+              class="card-img-top animate__animated animate__bounce"
+              alt="..."
+            />
+            <div>붕어빵</div>
+          </h1>
+          <div id="mt-3" class="img_btns">
+            <form action="/auth/kakao" method="get">
+              <button class="card__button1">
+                <img
+                  src="/static/img/kakao.png"
+                  width="30px;"
+                  height="30px;"
+                  class="kakao"
+                />
+
+                <div
+                  class="d-flex w-100 justify-content-center align-items-center"
+                >
+                  <span>카카오로 로그인</span>
+                </div>
+              </button>
+            </form>
+            <form action="/auth/facebook" method="get">
+              <button class="card__button2">
+                <img
+                  src="/static/img/facebook.png"
+                  width="30px;"
+                  height="30px;"
+                  class="facebook"
+                />
+                <div
+                  class="d-flex w-100 justify-content-center align-items-center"
+                >
+                  <span>페이스북으로 로그인</span>
+                </div>
+                <!-- <span style="margin-right: 55px">페이스북으로 로그인</span> -->
+              </button>
+            </form>
+            <a class="" href="/signin">
+              <button class="card__button" window.open="/user/signin">
+                <img
+                  src="/static/img/mapIcon.png"
+                  width="40px;"
+                  height="30px;"
+                  class="fish1"
+                />
+
+                <div
+                  class="d-flex w-100 justify-content-center align-items-center"
+                >
+                  <span>로그인</span>
+                </div>
+              </button>
+            </a>
+            <a class="" href="/signup">
+              <button class="card__button" window.open="/user/signup">
+                <img
+                  src="/static/img/mapIcon.png"
+                  width="40px;"
+                  height="30px;"
+                  class="fish2"
+                />
+                <div
+                  class="d-flex w-100 justify-content-center align-items-center"
+                >
+                  <span>로그인</span>
+                </div>
+              </button>
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
   </body>
 </html>

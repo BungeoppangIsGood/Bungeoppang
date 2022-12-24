@@ -8,15 +8,27 @@ a {
 
 #result {
     color: red;
+    font-size: 11px;
   }
 
-img{
-    margin-right: 10px;
+
+
+/* .kakao {
+    position: absolute;
+    right: 270px;
+    border-radius: 50%;
 }
 
-.kakao {
-    margin-right: 10px;
+.facebook {
+    position: absolute;
+    right: 302px;
+    border-radius: 50%;
 }
+
+.fish1, .fish2 {
+    position: absolute;
+    right: 295px;
+} */
 
  body {
     color: #FFBF00;
@@ -101,7 +113,7 @@ img{
     padding: 8px 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .card__button2 {
@@ -114,8 +126,9 @@ img{
     padding: 8px 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
     text-align: center;
+    justify-content: space-between;
+
 }
 
 .card__button:focus,
@@ -146,7 +159,6 @@ nav {
     z-index: 1;
     width: 100%;
 }
-
 
 
 /* @media(prefers-color-scheme:light) {

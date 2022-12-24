@@ -45,7 +45,7 @@
     <link rel="icon" href="/static/img/mapIcon.PNG" />
     <script>
       function profileEdit() {
-        var form = document.getElementById("form_profile");
+        const form = document.getElementById("form_profile");
         if (!form.checkValidity()) {
           form.reportValidity();
           return false;
@@ -77,7 +77,7 @@
       // 기본 이미지로 변경
 
       function profileDelete() {
-        var form = document.getElementById("form_profile");
+        const form = document.getElementById("form_profile");
         if (!form.checkValidity()) {
           form.reportValidity();
           return false;
@@ -96,7 +96,7 @@
           .then((data) => {
             if (data) {
               alert("회원 탈퇴 성공");
-              document.location.href = "/user/signin";
+              document.location.href = "/signin";
             } else {
               alert("알 수 없는 문제가 발생했습니다.");
             }
@@ -250,9 +250,6 @@
           <button class="card__button" type="button" onclick="profileEdit();">
             <span>수정</span>
           </button>
-          <!-- <button class="card__button" type="button" onclick="profileDelete();">
-            <span>회원탈퇴</span>
-          </button> -->
 
           <button
             type="button"

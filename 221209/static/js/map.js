@@ -153,5 +153,9 @@ function myPage() {
 }
 
 function logOut() {
-  location.href = "/main";
+  const con = confirm("로그아웃 하시겠습니까?")
+  if (con === true) {
+      location.href = "/auth/logout";
+      alert("로그아웃 성공");
+  }
 }
