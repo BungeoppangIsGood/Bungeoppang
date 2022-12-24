@@ -81,13 +81,13 @@ exports.Edit = async (req, res) => {
   //위도, 경도등도 넣어줘야한다.
   console.log(req.body)
 
-  const storeId = await Store.findOne({
-    attributes: ['id'],
-    where: {
-      storeName: beforeStoreName
-    }
-  })//메뉴를 저장하려면 storeid를 알아야한다.
-  console.log(storeId)
+  // const storeId = await Store.findOne({
+  //   attributes: ['id'],
+  //   where: {
+  //     id: beforeStoreName
+  //   }
+  // })//메뉴를 저장하려면 storeid를 알아야한다.
+  // console.log(storeId)
 
 
   const store1 = await Store.update({
@@ -98,7 +98,7 @@ exports.Edit = async (req, res) => {
     longitude : lon,
   },{
     where: {
-      storeName: beforeStoreName
+      id: beforeStoreName
     }
   })
 
@@ -107,7 +107,7 @@ exports.Edit = async (req, res) => {
   
   const menu1 = await Menu.findAll({
     where:{
-      store_id : storeId.id 
+      store_id : beforeStoreName
     }
   })//메뉴를 한 번에 수정하려면 menu의 id값들을 primary값을 알아야한다.
   console.log(menu1)
@@ -126,7 +126,7 @@ exports.Edit = async (req, res) => {
 
   const update = await Menu.bulkCreate(menu, {updateOnDuplicate: ["price"]})
   console.log(update)
-  res.send(storeName);
+  res.send(beforeStoreName);
 }
 
 //가게 페이지 render시에 필요
