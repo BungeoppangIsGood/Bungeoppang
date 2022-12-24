@@ -43,11 +43,6 @@ function home() {
 }
 
 /* 경도 및 위도 값 */
-const lat2 = document.querySelector(".form-control2");
-const lon2 = document.querySelector(".form-control3");
-lat2.style.display = "none";
-lon2.style.display = "none";
-
 /* 가게 주소 설정 스크립트 */
 const DST = "EPSG:900913";
 const SRC = "EPSG:4326";
@@ -55,10 +50,16 @@ const xyz = new ol.source.XYZ({
 url: "http://mt0.google.com/vt/lyrs=m&h1=ko&x={x}&y={y}&z={z}",
 crossOrigin: "anonymous",
 });
+
+const lat = sessionStorage.getItem("shopLat2");
+const lon = sessionStorage.getItem("shopLon2");
+
+console.log( lat );
+console.log( lon );
 const view = new ol.View({
 projection: DST,
 zoom: 11,
-center: ol.proj.transform([127.0802159, 37.5383777], SRC, DST),
+center: ol.proj.transform([lon, lat], SRC, DST),
 constrainResolution: true,
 });
 const tileLayer = new ol.layer.Tile({ source: xyz });

@@ -51,6 +51,7 @@ body {
    position: relative;
    align-items: center;
    justify-content: center;
+   border: none;
 }
 .detail {
    display: block;
