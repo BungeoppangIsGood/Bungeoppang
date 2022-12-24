@@ -9,7 +9,7 @@ a {
 #result {
     margin-top: 20px;
     color: red;
-    font-size: 14px;
+    font-size: 11px;
 }
 
  body {
@@ -26,7 +26,6 @@ a {
 }
 
 .scene {
-    height: 100vh;
     position: relative;
 }
 
