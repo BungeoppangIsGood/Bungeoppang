@@ -7,28 +7,10 @@ a {
 }
 
 #result {
+    margin-top: 20px;
     color: red;
-    font-size: 11px;
-  }
-
-
-
-/* .kakao {
-    position: absolute;
-    right: 270px;
-    border-radius: 50%;
+    font-size: 14px;
 }
-
-.facebook {
-    position: absolute;
-    right: 302px;
-    border-radius: 50%;
-}
-
-.fish1, .fish2 {
-    position: absolute;
-    right: 295px;
-} */
 
  body {
     color: #FFBF00;
