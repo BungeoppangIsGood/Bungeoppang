@@ -56,7 +56,7 @@ let markerStorage = [];
 function drawMarker(store) {
   const position = fromLonLat(store.longitude, store.latitude);
   const div = document.createElement("div");
-  div.innerHTML = `<div class="marker"  onclick="clickMarker('${store.storeName}')"><img style="  width: 32px; height: 32px" src="/static/img/mapMarker.png"></div>`;
+  div.innerHTML = `<div class="marker"  onclick="clickMarker('${store.store.id}')"><img style="  width: 32px; height: 32px" src="/static/img/mapMarker.png"></div>`;
   const overlay = new ol.Overlay({
     position,
     positioning: "center-center",
