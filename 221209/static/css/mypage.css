@@ -12,26 +12,20 @@ a {
     font-size: 11px;
 }
 
- body {
+body {
     color: #FFBF00;
     overflow-x: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
     height: 100vh;
 }
-
 .flex {
     align-items: center;
     display: flex;
     justify-content: center;
 }
-
 .scene {
     position: relative;
-    height: 100vh;
 }
-
 .card {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
@@ -47,14 +41,13 @@ a {
     position: relative;
     text-align: center;
     z-index: 1;
+    display: flex;
 }
-
 .card__heading {
     font-size: 1.35rem;
     font-weight: 800;
     margin-bottom: 15px;
 }
-
 .card__input {
     background: rgba(254, 254, 254, 0.075);
     border: 0.5px solid var(--color-main);
@@ -66,14 +59,12 @@ a {
     padding: 10px;
     width: 100%;
 }
-
 .card__input:focus,
 .card__input:active {
     background: rgba(254, 254, 254, 0.08);
     border: 1px solid var(--color-main);
     outline: none;
 }
-
 .card__button {
     width: 100%;
     background: #FFBF00;
@@ -86,7 +77,6 @@ a {
     align-items: center;
     justify-content: center;
 }
-
 .card__button1 {
     width: 100%;
     background: #F5E942;
@@ -99,7 +89,6 @@ a {
     align-items: center;
     justify-content: space-between;
 }
-
 .card__button2 {
     width: 100%;
     background: #346BEB;
@@ -112,20 +101,16 @@ a {
     align-items: center;
     text-align: center;
     justify-content: space-between;
-
 }
-
 .card__button:focus,
 .card__button:active {
     background: yellow;
     outline: none;
 }
-
 .card__button:hover {
     background: yellow;
     cursor: pointer;
 }
-
 button {
     background: #FFBF00;
     border: none;
@@ -134,7 +119,6 @@ button {
     margin: 10px auto 0 auto;
     padding: 8px 20px;
 }
-
 nav {
     justify-content: space-around !important;
     display: flex;
@@ -143,15 +127,12 @@ nav {
     z-index: 1;
     width: 100%;
 }
-
-
 /* @media(prefers-color-scheme:light) {
     body {
         background-color: white;
         color: black;
     }
 }
-
 @media(prefers-color-scheme:dark) {
     body {
         background-color: black;
