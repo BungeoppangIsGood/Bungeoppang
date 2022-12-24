@@ -47,7 +47,7 @@ function home() {
      }).then(function(data){{
         console.log(data)
         alert("가게 정보가 등록되었습니다💛")
-        window.location.href = `/storeDetail?store=${data.data}`
+        window.location.href = `/storeDetail?store=${data.data.id}`
      }})
  }
  const DST = "EPSG:900913";

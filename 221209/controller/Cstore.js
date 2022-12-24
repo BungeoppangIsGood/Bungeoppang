@@ -66,9 +66,9 @@ exports.register = async (req, res, next) => {
     menu.forEach((el) => {
       el.Store_id = store.dataValues.id
     }) 
-    //console.log(store)
+    console.log(store)
     const result2 = await Menu.bulkCreate(menu)
-    res.send(store.storeName);
+    res.send(store);
   } catch (err) {
     console.error(err);
     next(err)
