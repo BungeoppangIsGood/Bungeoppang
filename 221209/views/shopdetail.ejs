@@ -15,7 +15,7 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
         />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-        <link rel="icon" href="/static/img/mapIcon.PNG">
+        <link rel="icon" href="/static/img/mapIcon.png">
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <link rel="stylesheet" href="/static/css/shopdetail.css" />
     <script>
@@ -27,17 +27,17 @@
             <div class="wrap">
                 <div class="scene flex detail jm-font">
                     <div class="card dororo">
-                        <img src="/static/img/IMG_0652.PNG" class="card-img-top animate__animated animate__tada"alt="..."><!-- 아이콘 부분 -->
+                        <img src="/static/img/IMG_0652.png" class="card-img-top animate__animated animate__tada"alt="..."><!-- 아이콘 부분 -->
                         <div class="card-body">
                         <h5 class="card-title jm-font" name="storeName" id="storeName"><%=data.storeName%></h5>
                         <p class="card-text"></p>
                        </div>
                         <ul class="list-group list-group-flush">
-                        <li class="list-group-item" id="info" onclick="stars();"><img src="/static/img/IMG_0652.PNG" class="fish" alt="...">평점
-                            <ol style="float: right;" id = "average" ><img src="/static/img/<%=Math.round(ratingAVG)%>.PNG" alt=""class="stars" id="stars"><span id="aa"><%=ratingAVG%></span></ol>
+                        <li class="list-group-item" id="info" onclick="stars();"><img src="/static/img/IMG_0652.png" class="fish" alt="...">평점
+                            <ol style="float: right;" id = "average" ><img src="/static/img/<%=Math.round(ratingAVG)%>.png" alt=""class="stars" id="stars"><span id="aa"><%=ratingAVG%></span></ol>
                         </li>
                         <div id="starPeople">
-                            <li class="list-group-item" id="info"><img src="/static/img/IMG_0652.PNG" class="fish" alt="...">별점을 남긴 사람들
+                            <li class="list-group-item" id="info"><img src="/static/img/IMG_0652.png" class="fish" alt="...">별점을 남긴 사람들
                                 <button type="button" class="btn-close" aria-label="Close" onclick="starPeopleClose();"style="float: right; font-size: 1.3rem;"></button><br><br>
                                 <div class="row">
                                     <%for(var i = 0; i<ratinglist.length; i++) {%>
@@ -53,7 +53,7 @@
                                 </div>
                             </li>
                         </div>
-                        <li class="list-group-item" id="info"><img src="/static/img/IMG_0652.PNG" class="fish" alt="...">메뉴<br>
+                        <li class="list-group-item" id="info"><img src="/static/img/IMG_0652.png" class="fish" alt="...">메뉴<br>
                             <% if(menu2.menuName) { %>
                                 <ol style="float: right;" id="infoDetail"><%=menu1.menuName%> <%=menu1.price%></ol>
                                 <br><ol style="float: right;" id="infoDetail"><%=menu2.menuName%> <%=menu2.price%></ol>
@@ -62,7 +62,7 @@
                             <% } %>
                             
                         </li>
-                        <li class="list-group-item" id="info"><img src="/static/img/IMG_0652.PNG" class="fish" alt="...">이용 요일
+                        <li class="list-group-item" id="info"><img src="/static/img/IMG_0652.png" class="fish" alt="...">이용 요일
                             <ol style="float: right;" id="infoDetail">Open: <%=data.operatingTime%></ol>
                         </li>
                         </ul>
@@ -73,7 +73,7 @@
                         </div>
             </div>
             <div class="card text-dark bg-light mb-3 regiSTar jm-font" id="div2">
-                <div class="card-header titleStar"><img src="/static/img/IMG_0652.PNG" class="fish" alt="...">별점 남기기
+                <div class="card-header titleStar"><img src="/static/img/IMG_0652.png" class="fish" alt="...">별점 남기기
                     <button type="button" class="btn-close" aria-label="Close" onclick="regiStarClose();"style="float: right; font-size: 1.3rem;"></button></div>
                     <div class="card-body contentStar">
                         <form id="form_star">

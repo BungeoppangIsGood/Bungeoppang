@@ -1,6 +1,6 @@
 /* 홈으로 가기 */
 function home() {
-    window.location.href = "/"
+    window.location.href = "/map"
 }
  /* 경도 및 위도 값 */
  const lat2 = document.querySelector(".form-control2");

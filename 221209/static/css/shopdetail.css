@@ -70,8 +70,8 @@ body {
    top: 3rem;
    width: 23rem;
    height: 250px;
-   margin: 20px;
    display: none;
+   left: 20%;
 }
 .titleStar {
    font-size: 1.5rem;
