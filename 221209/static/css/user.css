@@ -135,6 +135,7 @@ button {
     padding: 8px 20px;
 }
 
+
 nav {
     justify-content: space-around !important;
     display: flex;
@@ -143,3 +144,5 @@ nav {
     z-index: 1;
     width: 100%;
 }
+
+
