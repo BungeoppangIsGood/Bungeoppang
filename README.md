@@ -14,6 +14,10 @@
 |가게등록|내용2|
 |가게수정|내용2|
 
+<h3> 3. 배포 사이트 </h3>
+<img src="221209/static/img/mainimg.jpg">
+
+
 <h1> 🤝 프로젝트 팀원 </h1>
 
 |이채연(FE)|금서하(FE)|박도희(FE)|한승보(BE)| 
@@ -48,5 +52,7 @@
 <img src="https://img.shields.io/badge/Sequelize-52B0E7?style=plastic&logo=Sequelize&logoColor=white"/>
 
 </div>
+
+
 
 
