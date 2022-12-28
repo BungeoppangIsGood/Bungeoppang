@@ -137,7 +137,7 @@ button {
 
 
 nav {
-    justify-content: space-around !important;
+    justify-content: space-around;
     display: flex;
     align-items: center;
     bottom: 0;
