@@ -74,5 +74,5 @@ function goRegister() {
 }
 
 function closes() {
-  location.href = "/";
+  location.href = "/map";
 }
