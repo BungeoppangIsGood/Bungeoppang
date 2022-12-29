@@ -17,7 +17,7 @@
 |가게수정|1. 지도 구현(openLayers)<br>2. 주소 표시(sessionStorage)<br>3. 가게 정보 수정(axios)|
 
 <h3> 3. 배포 사이트 </h3>
-<img src="221209/static/img/mainimg.jpg">
+<a href="http://49.50.167.53:8000"><img src="221209/static/img/mainimg.jpg"></a>
 
 
 <h1> 🤝 프로젝트 팀원 </h1>
