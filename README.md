@@ -56,5 +56,8 @@
 </div>
 
 
+<h2>ErDiagram</h2>
+<img  src="221209/static/img/ErDiagram.png">
+
 
 
