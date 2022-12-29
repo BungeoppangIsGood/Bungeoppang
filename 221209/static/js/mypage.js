@@ -19,5 +19,5 @@ function logOut() {
 }
 
 function back() {
-    location.href = "/";
+    location.href = "/map";
 }
