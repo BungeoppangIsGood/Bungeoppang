@@ -34,7 +34,7 @@ async function search() {
   event.preventDefault();
   const response = await axios({
     method: "GET",
-    url: "http://knsan189.iptime.org:8080/api/map/search",
+    url: "http://knsan189.iptime.org:3003/api/map/search",
     params: {
       keyword: searchBox.keyword.value,
     },
